@@ -1,14 +1,23 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const [work, setWork] = useState("");
   const [list, setList] = useState([]);
   const addToList = () => {
-    setList([...list, work]);
-    setWork("");
+    if (list.some((item) => item.id === work.replace(/\s/g, ""))) {
+      toast.warn("Công việc đã được thêm vào!");
+    } else {
+      setList([...list, { id: work.replace(/\s/g, ""), job: work }]);
+      setWork("");
+    }
   };
+  const deleteHandle = (id) => {
+    setList(list.filter((item) => item.id !== id));
+  };
+
   return (
     <>
       <div className="container ">
@@ -16,8 +25,6 @@ function App() {
           <h1 className="text-primary mt-5">Hello, Bootstrap in React!</h1>
           <div className="input-group mb-3 w-50">
             <input
-              aria-describedby="button-addon2"
-              aria-label="Recipient's username"
               className="form-control"
               value={work}
               onChange={(e) => setWork(e.target.value)}
@@ -29,16 +36,38 @@ function App() {
               type="button"
               onClick={addToList}
             >
-              Button
+              Thêm
             </button>
           </div>
           <h2>
-            {list.map((work, index) => (
-              <p key={index}>{work}</p>
+            {list?.map((item) => (
+              <div key={item.id}>
+                <span>{item.job}</span>
+                <span
+                  onClick={() => deleteHandle(item.id)}
+                  className="ms-auto"
+                  style={{ cursor: "pointer" }}
+                >
+                  <i className="fa-solid fa-trash  "></i>
+                </span>
+              </div>
             ))}
           </h2>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
     </>
   );
 }
