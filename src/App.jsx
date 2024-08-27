@@ -14,6 +14,7 @@ function App() {
           <Route path={Path.GENERAL} element={<General />}>
             <Route path={Path.HOME} element={<Home />} />
             <Route path={Path.LOGIN} element={<Login />} />
+            <Route path={Path.STAR} element={<Home />} />
           </Route>
         </Routes>
       </div>
