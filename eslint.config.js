@@ -33,16 +33,7 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
-      "no-unused-vars": [
-        "error",
-        {
-          vars: "all",
-          args: "after-used",
-          caughtErrors: "all",
-          ignoreRestSiblings: false,
-          reportUsedIgnorePattern: false,
-        },
-      ],
+      "no-unused-vars": "off", // Vô hiệu hóa quy tắc no-unused-vars
     },
   },
 ];

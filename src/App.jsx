@@ -3,14 +3,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Home, Login, General } from "./containers/public"; //src\containers\public\index.jsx
+import { Routes, Route } from "react-router-dom";
+import Path from "./ultis/path";
 function App() {
-  const { test } = useSelector((state) => state.app);
-  console.log(test);
-
   return (
     <>
-      <div>
-        <h1>Hello</h1>
+      <div className="App">
+        <Routes>
+          <Route path={Path.GENERAL} element={<General />}>
+            <Route path={Path.HOME} element={<Home />} />
+            <Route path={Path.LOGIN} element={<Login />} />
+          </Route>
+        </Routes>
       </div>
       <ToastContainer
         position="top-right"
