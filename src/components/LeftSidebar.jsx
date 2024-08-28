@@ -2,7 +2,7 @@ import React from "react";
 import ZingMP3logo from "../assets/ZingMP3logo.png";
 import { SidebarMenu } from "../ultis/Menu"; //
 import { NavLink } from "react-router-dom";
-const notActiveStyle = { color: "gray" };
+const notActiveStyle = { color: "#fff" };
 const activeStyle = { color: "#0f7070" };
 const LeftSidebar = () => {
   return (
