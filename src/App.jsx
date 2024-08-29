@@ -6,7 +6,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { Home, Login, General } from "./containers/public"; //src\containers\public\index.jsx
 import { Routes, Route } from "react-router-dom";
 import Path from "./ultis/path";
+import { useEffect } from "react";
+import * as actions from "./store/actions"; //src\store\actions\index.js
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actions.getHome());
+  });
   return (
     <>
       <div className="App">
