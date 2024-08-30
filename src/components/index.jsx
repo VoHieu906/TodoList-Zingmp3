@@ -2,4 +2,4 @@ export { default as LeftSidebar } from "./LeftSidebar"; // src\components\index.
 export { default as Rightsidebar } from "./Rightsidebar"; // src\components\index.jsx
 export { default as Header } from "./Header"; // src\components\index.jsx
 export { default as Search } from "./Search"; // src\components\index.jsx
-export { default as Slider } from "./Slider";
+export { default as SlickSlider } from "./SlickSlider";

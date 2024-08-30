@@ -3,11 +3,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Home, Login, General } from "./containers/public"; //src\containers\public\index.jsx
+import { Home, Login, General, Personal } from "./containers/public"; //src\containers\public\index.jsx
 import { Routes, Route } from "react-router-dom";
 import Path from "./ultis/path";
 import { useEffect } from "react";
 import * as actions from "./store/actions"; //src\store\actions\index.js
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -20,6 +23,7 @@ function App() {
           <Route path={Path.GENERAL} element={<General />}>
             <Route path={Path.HOME} element={<Home />} />
             <Route path={Path.LOGIN} element={<Login />} />
+            <Route path={Path.MY_MUSIC} element={<Personal />} />
             <Route path={Path.STAR} element={<Home />} />
           </Route>
         </Routes>
