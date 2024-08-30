@@ -1,8 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Slider from "react-slick";
+import * as actions from "../store/actions"; //
 const SlickSlider = () => {
   const { banner } = useSelector((state) => state.app);
+  const dispatch = useDispatch();
   const settings = {
     dots: false,
     infinite: true,
@@ -13,11 +15,16 @@ const SlickSlider = () => {
     autoplaySpeed: 2000,
     arrows: false,
   };
+  const handleClickBanner = (item) => {
+    if (item?.type === 4) {
+      dispatch(actions.setCurSongId(item.encodeId));
+    }
+  };
   return (
     <div className="slider-container">
       <Slider {...settings}>
         {banner?.map((item) => (
-          <div key={item.encodeId} className="p-3">
+          <div key={item.encodeId} className="px-2 py-2">
             <img
               src={item.banner}
               alt={`banner-${item.encodeId}`}
@@ -27,6 +34,7 @@ const SlickSlider = () => {
                 borderRadius: "25px",
               }}
               className=" img-fluid"
+              onClick={() => handleClickBanner(item)}
             />
           </div>
         ))}
