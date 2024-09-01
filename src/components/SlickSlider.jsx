@@ -14,9 +14,25 @@ const SlickSlider = () => {
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024, // tablet
+        settings: {
+          slidesToShow: 2, // Giảm số cột khi kích thước nhỏ hơn
+        },
+      },
+      {
+        breakpoint: 768, // mobile
+        settings: {
+          slidesToShow: 1, // Hiển thị một cột khi ở mobile
+        },
+      },
+    ],
   };
   const handleClickBanner = (item) => {
-    if (item?.type === 4) {
+    console.log(item);
+
+    if (item?.type === 1) {
       dispatch(actions.setCurSongId(item.encodeId));
     }
   };
@@ -24,7 +40,10 @@ const SlickSlider = () => {
     <div className="slider-container">
       <Slider {...settings}>
         {banner?.map((item) => (
-          <div key={item.encodeId} className="px-2 py-2">
+          <div
+            key={item.encodeId}
+            className="col-md-4 col-sm-6 col-12 px-2 py-2"
+          >
             <img
               src={item.banner}
               alt={`banner-${item.encodeId}`}

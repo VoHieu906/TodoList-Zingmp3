@@ -16,7 +16,7 @@ const LeftSidebar = () => {
             key={index}
             to={menu.path}
             end={menu.end}
-            className="p-3 fw-bold text-decoration-none"
+            className="py-2 fw-bold text-decoration-none"
             style={({ isActive }) => (isActive ? activeStyle : notActiveStyle)}
           >
             {menu.icon} <span>{menu.text}</span>
