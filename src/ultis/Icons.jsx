@@ -1,10 +1,20 @@
-import { MdLibraryMusic, MdInsertChart } from "react-icons/md";
+import {
+  MdLibraryMusic,
+  MdInsertChart,
+  MdSkipPrevious,
+  MdSkipNext,
+} from "react-icons/md";
 import { MdExplore } from "react-icons/md";
 import { RiUserFollowFill } from "react-icons/ri";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiDotsThree } from "react-icons/pi";
+import { FaRegCirclePlay } from "react-icons/fa6";
+import { FaRegPauseCircle } from "react-icons/fa";
+import { IoIosRepeat, IoIosShuffle } from "react-icons/io";
+import { IoPlayCircleOutline, IoPauseCircleOutline } from "react-icons/io5";
+
 const Icons = {
   MdLibraryMusic,
   MdExplore,
@@ -16,6 +26,14 @@ const Icons = {
   GoHeart,
   GoHeartFill,
   PiDotsThree,
+  MdSkipNext,
+  MdSkipPrevious,
+  FaRegCirclePlay,
+  FaRegPauseCircle,
+  IoIosRepeat,
+  IoIosShuffle,
+  IoPlayCircleOutline,
+  IoPauseCircleOutline,
 };
 
 export default Icons;

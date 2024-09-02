@@ -1,0 +1,9 @@
+.hoverable-span {
+  font-size: 30px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.hoverable-span:hover {
+  color: #00f; /* Màu xanh khi hover */
+}
