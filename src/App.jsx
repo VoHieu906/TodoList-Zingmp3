@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Home, Login, General, Personal } from "./containers/public"; //src\containers\public\index.jsx
+import { Home, Login, General, Personal, Playlist } from "./containers/public"; //src\containers\public\index.jsx
 import { Routes, Route } from "react-router-dom";
 import Path from "./ultis/path";
 import { useEffect } from "react";
@@ -24,6 +24,7 @@ function App() {
             <Route path={Path.HOME} element={<Home />} />
             <Route path={Path.LOGIN} element={<Login />} />
             <Route path={Path.MY_MUSIC} element={<Personal />} />
+            <Route path={Path.PLAYLIST_TITLE_PID} element={<Playlist />} />
             <Route path={Path.STAR} element={<Home />} />
           </Route>
         </Routes>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { LeftSidebar, Rightsidebar, Player } from "../../components";
+import { LeftSidebar, Rightsidebar, Player, Header } from "../../components";
 import { customBackgoundColors } from "../../ultis/colors";
 
 const General = () => {
@@ -20,6 +20,9 @@ const General = () => {
           <LeftSidebar />
         </div>
         <div className="col-xl-8 col-lg-6 pt-3 m-0 p-0 border border-primary">
+          <div className="px-4 d-flex " style={{ height: "70px" }}>
+            <Header className="w-100" />
+          </div>
           <Outlet />
         </div>
         <div

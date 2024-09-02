@@ -1,5 +1,5 @@
 import axios from "../Axios.jsx";
-export const getSong = (sid) =>
+export const apiGetSong = (sid) =>
   new Promise(async (resolve, reject) => {
     try {
       const response = await axios({
@@ -14,7 +14,7 @@ export const getSong = (sid) =>
       reject(error);
     }
   });
-export const getDetailSong = (sid) =>
+export const apiGetDetailSong = (sid) =>
   new Promise(async (resolve, reject) => {
     try {
       const response = await axios({
@@ -22,6 +22,21 @@ export const getDetailSong = (sid) =>
         method: "get",
         params: {
           id: sid,
+        },
+      });
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+export const apiGetDetailPlaylist = (pid) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await axios({
+        url: "/detailplaylist",
+        method: "get",
+        params: {
+          id: pid,
         },
       });
       resolve(response);

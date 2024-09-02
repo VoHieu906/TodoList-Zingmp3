@@ -18,14 +18,10 @@ const Player = () => {
     IoPauseCircleOutline,
     IoPlayCircleOutline,
   } = icons;
-  const audioEl = new Audio(
-    "https://a128-z3.zmdcdn.me/b13ba48ab8ba6ce1f830a6de122707c4?authen=exp=1725413700~acl=/b13ba48ab8ba6ce1f830a6de122707c4/*~hmac=f0d8b19e1ad484cff14c2a0c3fc57724"
-  );
-  console.log(audioEl);
+  const audioEl = new Audio();
 
   const spanStyle = { fontSize: "24px", cursor: "pointer" };
   const { curSongId, isPlaying } = useSelector((state) => state.music);
-  console.log(isPlaying);
 
   const [songInfo, setSongInfo] = useState(null);
   // const [isPlaying, setIsPlaying] = useState(false);
@@ -34,8 +30,8 @@ const Player = () => {
   useEffect(() => {
     const fetchDetailSong = async () => {
       const [res1, res2] = await Promise.all([
-        apis.getDetailSong(curSongId),
-        apis.getSong(curSongId),
+        apis.apiGetDetailSong(curSongId),
+        apis.apiGetSong(curSongId),
       ]);
       if (res1.data.err === 0) {
         setSongInfo(res1.data.data);
@@ -104,7 +100,9 @@ const Player = () => {
         </div>
         <div>Progress bar</div>
       </div>
-      <div className="col-md-3 border border-primary">Volumn</div>
+      <div className="col-md-3 border border-primary d-none d-xl-flex">
+        Volumn
+      </div>
     </div>
   );
 };
