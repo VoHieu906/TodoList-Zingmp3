@@ -1,0 +1,12 @@
+.title {
+  font-size: 0.9rem; /* Giảm cỡ chữ */
+}
+
+.artist-name {
+  color: #6c757d; /* Màu nhạt hơn, ví dụ màu xám */
+  font-size: 0.8rem; /* Kích thước chữ nhỏ hơn nếu cần */
+}
+.album-title,
+.songduration {
+  font-size: 0.9rem;
+}

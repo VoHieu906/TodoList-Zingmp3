@@ -12,8 +12,9 @@ import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiDotsThree } from "react-icons/pi";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { FaRegPauseCircle } from "react-icons/fa";
-import { IoIosRepeat, IoIosShuffle } from "react-icons/io";
+import { IoIosRepeat, IoIosShuffle, IoIosMusicalNotes } from "react-icons/io";
 import { IoPlayCircleOutline, IoPauseCircleOutline } from "react-icons/io5";
+import { CiMusicNote1 } from "react-icons/ci";
 
 const Icons = {
   MdLibraryMusic,
@@ -34,6 +35,8 @@ const Icons = {
   IoIosShuffle,
   IoPlayCircleOutline,
   IoPauseCircleOutline,
+  IoIosMusicalNotes,
+  CiMusicNote1,
 };
 
 export default Icons;

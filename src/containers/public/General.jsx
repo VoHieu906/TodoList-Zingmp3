@@ -15,12 +15,15 @@ const General = () => {
       }}
       className="d-flex flex-column"
     >
-      <div className="container-fluid row m-0 p-0 flex-grow-1">
+      <div className="container-fluid row m-0 p-0 w-100 h-100 position-relative">
         <div className={`${columnClass} justify-content-start ps-4`}>
           <LeftSidebar />
         </div>
-        <div className="col-xl-8 col-lg-6 pt-3 m-0 p-0 border border-primary">
-          <div className="px-4 d-flex " style={{ height: "70px" }}>
+        <div
+          style={{ minHeight: 0 }}
+          className="col-xl-8 col-lg-6 pt-3 m-0 p-0 border border-primary overflow-y-auto d-flex flex-column"
+        >
+          <div className="px-2 d-flex" style={{ height: "70px" }}>
             <Header className="w-100" />
           </div>
           <Outlet />
@@ -31,7 +34,10 @@ const General = () => {
           <Rightsidebar />
         </div>
       </div>
-      <div style={{ height: "90px" }}>
+      <div
+        style={{ height: "90px", zIndex: 1000 }}
+        className="position-fixed bottom-0 w-100"
+      >
         <Player />
       </div>
     </div>
