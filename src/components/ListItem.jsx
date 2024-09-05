@@ -2,12 +2,21 @@ import React, { memo } from "react";
 import icons from "../ultis/Icons";
 import moment from "moment";
 import "./ListItem.css";
+import { useDispatch } from "react-redux";
+import * as actions from "../store/actions";
 const { IoIosMusicalNotes } = icons;
 const ListItem = ({ songData }) => {
-  //   console.log(songData);
+  const dispatch = useDispatch();
 
   return (
-    <div className="d-flex align-items-center justify-content-between">
+    <div
+      className="d-flex align-items-center justify-content-between py-2 hover-effect"
+      style={{ borderTop: "1px solid #6c757d" }}
+      onClick={() => {
+        dispatch(actions.setCurSongId(songData?.encodeId));
+        dispatch(actions.play(true));
+      }}
+    >
       <div
         className="d-flex align-items-center gap-2 flex-grow-1"
         style={{ width: "50%" }}

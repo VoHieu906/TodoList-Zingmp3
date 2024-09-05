@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { customBackgoundColors } from "../ultis/colors";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as apis from "../apis";
+import * as actions from "../store/actions";
 import icons from "../ultis/Icons";
 import "./Player.css";
 const Player = () => {
@@ -18,15 +19,14 @@ const Player = () => {
     IoPauseCircleOutline,
     IoPlayCircleOutline,
   } = icons;
-  const audioEl = new Audio();
-
   const spanStyle = { fontSize: "24px", cursor: "pointer" };
-  const { curSongId, isPlaying } = useSelector((state) => state.music);
 
+  const audioEl = useRef(new Audio());
+  const { curSongId, isPlaying } = useSelector((state) => state.music);
   const [songInfo, setSongInfo] = useState(null);
-  // const [isPlaying, setIsPlaying] = useState(false);
   const [source, setSource] = useState(null);
-  const handleToggleMusic = () => {};
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchDetailSong = async () => {
       const [res1, res2] = await Promise.all([
@@ -41,10 +41,45 @@ const Player = () => {
       }
     };
     fetchDetailSong();
+    console.log("Id bài hát: ", curSongId);
   }, [curSongId]);
+
   useEffect(() => {
-    audioEl.play();
-  }, [curSongId]);
+    const handleAudio = async () => {
+      try {
+        // Kiểm tra trạng thái hiện tại của audio trước khi gọi pause
+        if (!audioEl.current.paused) {
+          audioEl.current.pause();
+        }
+
+        // Cập nhật source và load lại audio
+        audioEl.current.src = source;
+        audioEl.current.load();
+
+        // Chờ đến khi audio sẵn sàng để phát
+        audioEl.current.oncanplaythrough = async () => {
+          if (isPlaying) {
+            await audioEl.current.play();
+            console.log(curSongId);
+          }
+        };
+      } catch (error) {
+        console.error("Lỗi khi xử lý âm thanh:", error);
+      }
+    };
+
+    handleAudio();
+  }, [curSongId, source, isPlaying]);
+
+  const handleToggleMusic = () => {
+    if (isPlaying) {
+      audioEl.current.pause();
+      dispatch(actions.play(false));
+    } else {
+      audioEl.current.play();
+      dispatch(actions.play(true));
+    }
+  };
   return (
     <div
       style={{

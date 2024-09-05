@@ -10,3 +10,11 @@
 .songduration {
   font-size: 0.9rem;
 }
+.hover-effect {
+  border-top: 1px solid #6c757d;
+  cursor: pointer;
+}
+
+.hover-effect:hover {
+  background-color: #dde4e4;
+}

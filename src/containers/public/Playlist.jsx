@@ -26,6 +26,25 @@ const Playlist = () => {
   return (
     <>
       <div className="d-flex gap-1 px-2">
+        <style>
+          {`
+    /* CSS cho thanh cuộn trong Chrome, Edge, Safari */
+    div[style*="overflow-y: auto"]::-webkit-scrollbar {
+      width: 7px;
+    }
+    div[style*="overflow-y: auto"]::-webkit-scrollbar-track {
+     
+      border-radius: 10px;
+    }
+    div[style*="overflow-y: auto"]::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+    div[style*="overflow-y: auto"]::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  `}
+        </style>
         <div
           style={{ flex: 3 }}
           className="d-flex flex-column align-items-center gap-2"
@@ -63,9 +82,10 @@ const Playlist = () => {
           style={{
             flex: 7,
             overflowY: "auto",
-            maxHeight: "calc(100vh - 160px)",
+            maxHeight: "calc(100vh - 177px)",
+            paddingBottom: "50px",
           }}
-          className="d-flex flex-column"
+          className="d-flex flex-column "
         >
           <span className="text-sm">
             <span style={{ color: "#6c757d" }}>Lời tựa: </span>

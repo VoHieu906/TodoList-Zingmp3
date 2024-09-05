@@ -15,6 +15,7 @@ import { FaRegPauseCircle } from "react-icons/fa";
 import { IoIosRepeat, IoIosShuffle, IoIosMusicalNotes } from "react-icons/io";
 import { IoPlayCircleOutline, IoPauseCircleOutline } from "react-icons/io5";
 import { CiMusicNote1 } from "react-icons/ci";
+import { LuDot } from "react-icons/lu";
 
 const Icons = {
   MdLibraryMusic,
@@ -37,6 +38,7 @@ const Icons = {
   IoPauseCircleOutline,
   IoIosMusicalNotes,
   CiMusicNote1,
+  LuDot,
 };
 
 export default Icons;
