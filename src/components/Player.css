@@ -7,3 +7,40 @@
 .hoverable-span:hover {
   color: #00f; /* Màu xanh khi hover */
 }
+/* Player.css */
+.progress-container {
+  width: 75%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.progress-bar-wrapper {
+  height: 3px;
+  width: 100%;
+  background-color: rgb(189, 181, 181);
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-bar {
+  background-color: #0e8080;
+  height: 100%;
+}
+
+.progress-handle {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: -4px; /* Để cho nó ở giữa thanh progress */
+  transform: translateX(-50%);
+  transition: transform 0.1s ease-in-out;
+}
+
+.progress-bar-wrapper:hover .progress-handle {
+  transform: scale(1.5); /* Phóng to khi hover */
+}

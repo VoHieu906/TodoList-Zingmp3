@@ -4,7 +4,6 @@ import Icons from "../ultis/Icons";
 import moment from "moment";
 const ListSong = ({ songs, totalDuration }) => {
   console.log({ songs, totalDuration });
-
   const { LuDot } = Icons;
   return (
     <div className="d-flex flex-column text-sm ">
