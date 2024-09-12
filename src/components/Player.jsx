@@ -21,11 +21,12 @@ const Player = () => {
     IoPlayCircleOutline,
   } = icons;
 
-  const { curSongId, isPlaying } = useSelector((state) => state.music);
+  const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
   const [songInfo, setSongInfo] = useState(null);
   const [audio, setAudio] = useState(new Audio());
   const [progress, setProgress] = useState(0); // State để lưu progress
   const [duration, setDuration] = useState(0); // State để lưu tổng thời gian của bài hát
+  const [isShuffle, setIsShuffle] = useState(false);
   const dispatch = useDispatch();
   const handleProgressClick = (e) => {
     const clickX = e.nativeEvent.offsetX;
@@ -63,16 +64,6 @@ const Player = () => {
     if (isPlaying) audio.play();
   }, [audio]);
 
-  const handleToggleMusic = async () => {
-    if (isPlaying) {
-      audio.pause();
-      dispatch(actions.play(false));
-    } else {
-      audio.play();
-      dispatch(actions.play(true));
-    }
-  };
-
   useEffect(() => {
     // Đặt sự kiện cập nhật progress bar khi audio đang phát
     const handleTimeUpdate = () => {
@@ -106,6 +97,40 @@ const Player = () => {
     return moment.utc(time * 1000).format("m:ss");
   };
 
+  const handleToggleMusic = async () => {
+    if (isPlaying) {
+      audio.pause();
+      dispatch(actions.play(false));
+    } else {
+      audio.play();
+      dispatch(actions.play(true));
+    }
+  };
+  const handleNextSong = () => {
+    if (songs) {
+      let currentSongIndex;
+      songs?.forEach((item, index) => {
+        if (item.encodeId === curSongId) {
+          currentSongIndex = index;
+        }
+      });
+      dispatch(actions.setCurSongId(songs[currentSongIndex + 1].encodeId));
+      dispatch(actions.play(true));
+    }
+  };
+  const handlePrevSong = () => {
+    if (songs) {
+      let currentSongIndex;
+      songs?.forEach((item, index) => {
+        if (item.encodeId === curSongId) {
+          currentSongIndex = index;
+        }
+      });
+      dispatch(actions.setCurSongId(songs[currentSongIndex - 1].encodeId));
+      dispatch(actions.play(true));
+    }
+  };
+  const handleShuffle = () => {};
   return (
     <div
       style={{
@@ -141,12 +166,18 @@ const Player = () => {
       <div className="col-md-6 border border-primary d-flex flex-column align-items-center justify-content-center gap-1">
         <div className="d-flex gap-5 align-items-center justify-content-center">
           <span
-            style={{ fontSize: "24px", cursor: "pointer" }}
+            style={{ fontSize: "24px" }}
+            className={`cursor-pointer ${isShuffle && "text-success"}`}
+            onClick={() => setIsShuffle((prev) => !prev)}
             title="Phát ngẫu nhiên"
           >
             <IoIosShuffle />
           </span>
-          <span style={{ fontSize: "24px", cursor: "pointer" }}>
+          <span
+            onClick={handlePrevSong}
+            style={{ fontSize: "24px" }}
+            className={`${!songs ? "text-secondary" : "cursor-pointer"}`}
+          >
             <MdSkipPrevious />
           </span>
           <span
@@ -156,11 +187,16 @@ const Player = () => {
           >
             {isPlaying ? <IoPauseCircleOutline /> : <IoPlayCircleOutline />}
           </span>
-          <span style={{ fontSize: "24px", cursor: "pointer" }}>
+          <span
+            style={{ fontSize: "24px" }}
+            className={`${!songs ? "text-secondary" : "cursor-pointer"}`}
+            onClick={handleNextSong}
+          >
             <MdSkipNext />
           </span>
           <span
-            style={{ fontSize: "24px", cursor: "pointer" }}
+            style={{ fontSize: "24px" }}
+            className="cursor-pointer"
             title="Phát lặp lại"
           >
             <IoIosRepeat />

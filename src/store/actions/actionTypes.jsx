@@ -4,5 +4,7 @@ const actionTypes = {
 
   //music:
   PLAY: "PLAY",
+  SET_PLAYLIST: "SET_PLAYLIST",
+  PLAYLIST: "PLAYLIST",
 };
 export default actionTypes;

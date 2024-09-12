@@ -2,9 +2,11 @@ import React, { memo } from "react";
 import ListItem from "./ListItem";
 import Icons from "../ultis/Icons";
 import moment from "moment";
-const ListSong = ({ songs, totalDuration }) => {
-  console.log({ songs, totalDuration });
-  const { LuDot } = Icons;
+import { useSelector } from "react-redux";
+const { LuDot } = Icons;
+
+const ListSong = ({ totalDuration }) => {
+  const { songs } = useSelector((state) => state.music);
   return (
     <div className="d-flex flex-column text-sm ">
       <div className="d-flex align-items-center justify-content-between p-2 fw-semibold ">

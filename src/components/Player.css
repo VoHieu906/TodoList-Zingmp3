@@ -7,6 +7,10 @@
 .hoverable-span:hover {
   color: #00f; /* Màu xanh khi hover */
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
 /* Player.css */
 .progress-container {
   width: 75%;

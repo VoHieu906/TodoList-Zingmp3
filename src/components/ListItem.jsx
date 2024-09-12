@@ -15,6 +15,7 @@ const ListItem = ({ songData }) => {
       onClick={() => {
         dispatch(actions.setCurSongId(songData?.encodeId));
         dispatch(actions.play(true));
+        dispatch(actions.playPlaylist(true));
       }}
     >
       <div

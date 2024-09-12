@@ -8,3 +8,28 @@ export const play = (flag) => ({
   type: actionTypes.PLAY,
   flag,
 });
+export const playPlaylist = (flag) => ({
+  type: actionTypes.SET_PLAYLIST,
+  flag,
+});
+export const setPlaylist = (songs) => ({
+  type: actionTypes.PLAYLIST,
+  songs,
+});
+// export const fetchDetailPlayList = (pid) => async (dispatch) => {
+//   try {
+//     const response = await apis.apiGetDetailPlaylist(pid);
+
+//     if (response?.data.err === 0) {
+//       dispatch({
+//         type: actionTypes.PLAYLIST,
+//         songs: response.data?.data?.items,
+//       });
+//     }
+//   } catch (error) {
+//     dispatch({
+//       type: actionTypes.PLAYLIST,
+//       songs: null,
+//     });
+//   }
+// };

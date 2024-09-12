@@ -3,15 +3,19 @@ import { useParams } from "react-router-dom";
 import * as apis from "../../apis";
 import moment from "moment";
 import { ListSong } from "../../components";
+import { useDispatch } from "react-redux";
+import * as actions from "../../store/actions";
 const Playlist = () => {
   const { title, pid } = useParams();
   const [playlistData, setPlaylistData] = useState({});
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchDetailPlayList = async () => {
       try {
         const response = await apis.apiGetDetailPlaylist(pid);
         if (response?.data.err === 0) {
           setPlaylistData(response.data?.data);
+          dispatch(actions.setPlaylist(response?.data?.data?.song?.items));
         } else {
           console.error("API Error:", response?.data.msg);
         }
@@ -92,10 +96,7 @@ const Playlist = () => {
             <span>{playlistData?.sortDescription}</span>
           </span>
 
-          <ListSong
-            songs={playlistData?.song?.items || []}
-            totalDuration={playlistData?.song?.totalDuration || 0}
-          />
+          <ListSong totalDuration={playlistData?.song?.totalDuration || 0} />
         </div>
       </div>
     </>
