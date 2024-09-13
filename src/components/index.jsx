@@ -6,3 +6,4 @@ export { default as SlickSlider } from "./SlickSlider";
 export { default as Player } from "./Player";
 export { default as ListSong } from "./ListSong";
 export { default as ListItem } from "./ListItem";
+export { default as Section } from "./Section";

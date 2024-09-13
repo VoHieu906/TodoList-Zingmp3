@@ -27,6 +27,7 @@ const General = () => {
             <Header className="w-100" />
           </div>
           <Outlet />
+          <div className="w-100" style={{ height: 500 }}></div>
         </div>
         <div
           className={`${columnClass} justify-content-center d-none d-xl-flex`}

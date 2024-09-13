@@ -38,6 +38,8 @@ const SlickSlider = () => {
       dispatch(actions.setPlaylist(null));
     } else if (item?.type === 4) {
       const playlistPath = item?.link?.split(".")[0];
+      console.log(playlistPath);
+
       navigate(playlistPath);
     } else {
       dispatch(actions.setPlaylist(null));

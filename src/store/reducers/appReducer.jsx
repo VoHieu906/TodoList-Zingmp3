@@ -1,6 +1,7 @@
 import actionTypes from "../actions/actionTypes";
 const initState = {
   banner: [],
+  hot: {},
 };
 const appReducer = (state = initState, action) => {
   switch (action.type) {
@@ -8,8 +9,11 @@ const appReducer = (state = initState, action) => {
       return {
         ...state,
         banner:
-          action.homeData?.find((item) => item.sectionType === "banner")
+          action.homeData?.find((item) => item.sectionId === "hSlider")
             ?.items || null,
+        hot:
+          action.homeData?.find((item) => item.sectionId === "hEditorTheme1") ||
+          {},
       };
 
     default:

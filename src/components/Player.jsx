@@ -27,6 +27,7 @@ const Player = () => {
   const [progress, setProgress] = useState(0); // State để lưu progress
   const [duration, setDuration] = useState(0); // State để lưu tổng thời gian của bài hát
   const [isShuffle, setIsShuffle] = useState(false);
+  const [isRepeat, setIsRepeat] = useState(false);
   const dispatch = useDispatch();
   const handleProgressClick = (e) => {
     const clickX = e.nativeEvent.offsetX;
@@ -78,7 +79,24 @@ const Player = () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
     };
   }, [audio]);
+  useEffect(() => {
+    const handleEnded = () => {
+      console.log(isShuffle);
 
+      if (isShuffle) {
+        handleShuffle();
+      } else if (isRepeat) {
+        handleNextSong();
+      } else {
+        audio.pause();
+        dispatch(actions.play(false));
+      }
+    };
+    audio.addEventListener("ended", handleEnded);
+    return () => {
+      audio.removeEventListener("ended", handleEnded);
+    };
+  }, [audio, isShuffle, isRepeat]);
   // Tính toán phần trăm progress
   const calculateProgressPercentage = () => {
     if (duration > 0) {
@@ -130,7 +148,11 @@ const Player = () => {
       dispatch(actions.play(true));
     }
   };
-  const handleShuffle = () => {};
+  const handleShuffle = () => {
+    setIsShuffle((prev) => !prev);
+    const randomIndex = Math.round(Math.random() * songs?.length) - 1;
+    dispatch(actions.setCurSongId(songs[randomIndex].encodeId));
+  };
   return (
     <div
       style={{
@@ -196,8 +218,9 @@ const Player = () => {
           </span>
           <span
             style={{ fontSize: "24px" }}
-            className="cursor-pointer"
-            title="Phát lặp lại"
+            className={`cursor-pointer ${isRepeat && "text-success"}`}
+            title="Phát lặp lại tất cả"
+            onClick={() => setIsRepeat((prev) => !prev)}
           >
             <IoIosRepeat />
           </span>
