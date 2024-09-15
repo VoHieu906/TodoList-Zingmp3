@@ -19,6 +19,7 @@ const Player = () => {
     IoIosShuffle,
     IoPauseCircleOutline,
     IoPlayCircleOutline,
+    RiRepeatOneLine,
   } = icons;
 
   const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
@@ -27,7 +28,7 @@ const Player = () => {
   const [progress, setProgress] = useState(0); // State để lưu progress
   const [duration, setDuration] = useState(0); // State để lưu tổng thời gian của bài hát
   const [isShuffle, setIsShuffle] = useState(false);
-  const [isRepeat, setIsRepeat] = useState(false);
+  const [repeatMode, setRepeatMode] = useState(0);
   const dispatch = useDispatch();
   const handleProgressClick = (e) => {
     const clickX = e.nativeEvent.offsetX;
@@ -81,12 +82,12 @@ const Player = () => {
   }, [audio]);
   useEffect(() => {
     const handleEnded = () => {
-      console.log(isShuffle);
-
+      console.log("shuflle: ", isShuffle);
+      console.log("repeat:", repeatMode);
       if (isShuffle) {
         handleShuffle();
-      } else if (isRepeat) {
-        handleNextSong();
+      } else if (repeatMode) {
+        repeatMode === 1 ? handleRepeatOne() : handleNextSong();
       } else {
         audio.pause();
         dispatch(actions.play(false));
@@ -96,7 +97,7 @@ const Player = () => {
     return () => {
       audio.removeEventListener("ended", handleEnded);
     };
-  }, [audio, isShuffle, isRepeat]);
+  }, [audio, isShuffle, repeatMode]);
   // Tính toán phần trăm progress
   const calculateProgressPercentage = () => {
     if (duration > 0) {
@@ -114,7 +115,9 @@ const Player = () => {
     const seconds = Math.floor(time % 60);
     return moment.utc(time * 1000).format("m:ss");
   };
-
+  const handleRepeatOne = () => {
+    audio.play();
+  };
   const handleToggleMusic = async () => {
     if (isPlaying) {
       audio.pause();
@@ -149,9 +152,9 @@ const Player = () => {
     }
   };
   const handleShuffle = () => {
-    setIsShuffle((prev) => !prev);
     const randomIndex = Math.round(Math.random() * songs?.length) - 1;
     dispatch(actions.setCurSongId(songs[randomIndex].encodeId));
+    dispatch(actions.play(true));
   };
   return (
     <div
@@ -218,11 +221,15 @@ const Player = () => {
           </span>
           <span
             style={{ fontSize: "24px" }}
-            className={`cursor-pointer ${isRepeat && "text-success"}`}
+            className={`cursor-pointer ${repeatMode && "text-success"}`}
             title="Phát lặp lại tất cả"
-            onClick={() => setIsRepeat((prev) => !prev)}
+            onClick={() => setRepeatMode((prev) => (prev === 2 ? 0 : prev + 1))}
           >
-            <IoIosRepeat />
+            {repeatMode === 1 ? (
+              <RiRepeatOneLine size={24} />
+            ) : (
+              <IoIosRepeat size={24} />
+            )}
           </span>
         </div>
 
