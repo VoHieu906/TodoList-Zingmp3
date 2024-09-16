@@ -1,0 +1,51 @@
+/* CSS cho hiệu ứng đĩa xoay */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.rotate {
+  animation: spin 10s linear infinite; /* Thay đổi thời gian xoay nếu cần */
+  border-radius: 50%; /* Bo tròn hình ảnh nếu chưa có */
+  animation-play-state: running; /* Animation chạy mặc định */
+}
+
+.rotate-paused {
+  animation-play-state: paused; /* Animation dừng */
+}
+
+.rotate-reverse {
+  animation: spin-reverse 0.5s forwards; /* Thay đổi thời gian xoay ngược chiều nếu cần */
+}
+
+.custom-rounded {
+  border-radius: 10px; /* Hoặc giá trị khác cho bo tròn ảnh khi không xoay */
+  transition: border-radius 0.5s ease; /* Thêm chuyển tiếp cho bo tròn */
+}
+
+.custom-rounded-circle {
+  border-radius: 50%; /* Bo tròn hình tròn */
+  transition: border-radius 0.5s ease; /* Thêm chuyển tiếp cho bo tròn */
+}
+
+.overlay {
+  background-color: rgba(255, 0, 0, 0); /* Ban đầu không có overlay */
+  transition: background-color 0.3s ease; /* Hiệu ứng mượt khi hover */
+}
+
+.overlay:hover {
+  background-color: rgba(0, 0, 0, 0.3); /* Hiện overlay khi hover */
+}

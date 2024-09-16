@@ -7,7 +7,7 @@ import icons from "../ultis/Icons";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
-import "./Player.css";
+import "./css/Player.css";
 
 const Player = () => {
   const {

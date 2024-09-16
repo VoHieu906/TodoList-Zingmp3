@@ -6,7 +6,11 @@ import {
 } from "react-icons/md";
 import { MdExplore } from "react-icons/md";
 import { RiUserFollowFill } from "react-icons/ri";
-import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
+import {
+  FaLongArrowAltLeft,
+  FaLongArrowAltRight,
+  FaPlay,
+} from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiDotsThree } from "react-icons/pi";
@@ -33,6 +37,7 @@ const Icons = {
   MdSkipPrevious,
   FaRegCirclePlay,
   FaRegPauseCircle,
+  FaPlay,
   IoIosRepeat,
   IoIosShuffle,
   IoPlayCircleOutline,
