@@ -48,3 +48,11 @@
 .progress-bar-wrapper:hover .progress-handle {
   transform: scale(1.5); /* Phóng to khi hover */
 }
+.opacity-custom {
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.opacity-custom:hover {
+  opacity: 1;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { LeftSidebar, Rightsidebar, Player, Header } from "../../components";
 import { customBackgoundColors } from "../../ultis/colors";
@@ -6,6 +6,7 @@ import { customBackgoundColors } from "../../ultis/colors";
 const General = () => {
   const columnClass =
     "col-xl-2 col-lg-3 pt-3 d-flex m-0 p-0 border border-secondary";
+  const [isShowRightSidebar, setIsShowRightSidebar] = useState(true);
 
   return (
     <div
@@ -20,8 +21,10 @@ const General = () => {
           <LeftSidebar />
         </div>
         <div
+          className={`col-xl-8 col-lg-6 pt-3 m-0 p-0 border border-primary overflow-y-auto d-flex flex-column ${
+            !isShowRightSidebar ? "flex-grow-1" : ""
+          }`}
           style={{ minHeight: 0 }}
-          className="col-xl-8 col-lg-6 pt-3 m-0 p-0 border border-primary overflow-y-auto d-flex flex-column"
         >
           <div className="px-2 d-flex" style={{ height: "70px" }}>
             <Header className="w-100" />
@@ -29,17 +32,19 @@ const General = () => {
           <Outlet />
           <div className="w-100" style={{ height: 500 }}></div>
         </div>
-        <div
-          className={`${columnClass} justify-content-center d-none d-xl-flex`}
-        >
-          <Rightsidebar />
-        </div>
+        {isShowRightSidebar && (
+          <div
+            className={`${columnClass} justify-content-center d-none d-xl-flex`}
+          >
+            <Rightsidebar />
+          </div>
+        )}
       </div>
       <div
         style={{ height: "90px", zIndex: 1000 }}
         className="position-fixed bottom-0 w-100"
       >
-        <Player />
+        <Player setIsShowRightSidebar={setIsShowRightSidebar} />
       </div>
     </div>
   );
