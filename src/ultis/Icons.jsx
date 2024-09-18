@@ -11,11 +11,16 @@ import {
   FaLongArrowAltRight,
   FaPlay,
 } from "react-icons/fa";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsMusicNoteList } from "react-icons/bs";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiDotsThree } from "react-icons/pi";
 import { FaRegCirclePlay } from "react-icons/fa6";
-import { FaRegPauseCircle } from "react-icons/fa";
+import {
+  FaRegPauseCircle,
+  FaVolumeUp,
+  FaVolumeMute,
+  FaVolumeDown,
+} from "react-icons/fa";
 import { IoIosRepeat, IoIosShuffle, IoIosMusicalNotes } from "react-icons/io";
 import { IoPlayCircleOutline, IoPauseCircleOutline } from "react-icons/io5";
 import { CiMusicNote1 } from "react-icons/ci";
@@ -29,6 +34,9 @@ const Icons = {
   MdInsertChart,
   FaLongArrowAltLeft,
   FaLongArrowAltRight,
+  FaVolumeUp,
+  FaVolumeDown,
+  FaVolumeMute,
   BsSearch,
   GoHeart,
   GoHeartFill,
@@ -46,6 +54,7 @@ const Icons = {
   CiMusicNote1,
   LuDot,
   RiRepeatOneLine,
+  BsMusicNoteList,
 };
 
 export default Icons;

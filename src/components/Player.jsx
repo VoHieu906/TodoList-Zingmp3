@@ -8,8 +8,9 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
 import "./css/Player.css";
+import { LoadingSong } from "./";
 
-const Player = () => {
+const Player = ({ setIsShowRightSidebar }) => {
   const {
     GoHeart,
     PiDotsThree,
@@ -20,6 +21,10 @@ const Player = () => {
     IoPauseCircleOutline,
     IoPlayCircleOutline,
     RiRepeatOneLine,
+    BsMusicNoteList,
+    FaVolumeUp,
+    FaVolumeMute,
+    FaVolumeDown,
   } = icons;
 
   const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
@@ -29,6 +34,8 @@ const Player = () => {
   const [duration, setDuration] = useState(0); // State để lưu tổng thời gian của bài hát
   const [isShuffle, setIsShuffle] = useState(false);
   const [repeatMode, setRepeatMode] = useState(0);
+  const [isLoadedSource, setIsLoadedSource] = useState(true);
+  const [volume, setVolume] = useState(100);
   const dispatch = useDispatch();
   const handleProgressClick = (e) => {
     const clickX = e.nativeEvent.offsetX;
@@ -39,10 +46,12 @@ const Player = () => {
   };
   useEffect(() => {
     const fetchDetailSong = async () => {
+      setIsLoadedSource(false);
       const [res1, res2] = await Promise.all([
         apis.apiGetDetailSong(curSongId),
         apis.apiGetSong(curSongId),
       ]);
+      setIsLoadedSource(true);
       if (res1.data.err === 0) {
         setSongInfo(res1.data.data);
       }
@@ -60,7 +69,9 @@ const Player = () => {
     };
     fetchDetailSong();
   }, [curSongId]);
-
+  useEffect(() => {
+    audio.volume = volume / 100;
+  });
   useEffect(() => {
     audio.load();
     if (isPlaying) audio.play();
@@ -156,6 +167,7 @@ const Player = () => {
     dispatch(actions.setCurSongId(songs[randomIndex].encodeId));
     dispatch(actions.play(true));
   };
+
   return (
     <div
       style={{
@@ -164,7 +176,7 @@ const Player = () => {
       }}
       className="p-0 row container-fluid m-0"
     >
-      <div className="col-md-3 border border-primary d-flex align-items-center ">
+      <div className="col-md-3  d-flex align-items-center ">
         <div className="d-flex align-items-center">
           <img
             src={songInfo?.thumbnail}
@@ -188,7 +200,7 @@ const Player = () => {
         </div>
       </div>
 
-      <div className="col-md-6 border border-primary d-flex flex-column align-items-center justify-content-center gap-1">
+      <div className="col-md-6  d-flex flex-column align-items-center justify-content-center gap-1">
         <div className="d-flex gap-5 align-items-center justify-content-center">
           <span
             style={{ fontSize: "24px" }}
@@ -210,7 +222,13 @@ const Player = () => {
             className="hoverable-span"
             onClick={handleToggleMusic}
           >
-            {isPlaying ? <IoPauseCircleOutline /> : <IoPlayCircleOutline />}
+            {!isLoadedSource ? (
+              <LoadingSong />
+            ) : isPlaying ? (
+              <IoPauseCircleOutline />
+            ) : (
+              <IoPlayCircleOutline />
+            )}
           </span>
           <span
             style={{ fontSize: "24px" }}
@@ -258,8 +276,32 @@ const Player = () => {
         </div>
       </div>
 
-      <div className="col-md-3 border border-primary d-none d-xl-flex">
-        Volume
+      <div className="col-md-3  d-none d-xl-flex align-items-center justify-content-end gap-4">
+        <div className="d-flex align-items-center gap-2">
+          <span onClick={() => setVolume((prev) => (+prev === 0 ? 70 : 0))}>
+            {+volume >= 50 ? (
+              <FaVolumeUp />
+            ) : +volume === 0 ? (
+              <FaVolumeMute />
+            ) : (
+              <FaVolumeDown />
+            )}
+          </span>
+          <input
+            type="range"
+            step={1}
+            value={volume}
+            onChange={(e) => setVolume(e.target.value)}
+          />
+        </div>
+
+        <span
+          className="p-1 rounded cursor-pointer opacity-custom"
+          style={{ backgroundColor: `${customBackgoundColors.color_500}` }}
+          onClick={() => setIsShowRightSidebar((prev) => !prev)}
+        >
+          <BsMusicNoteList size={24} />
+        </span>
       </div>
     </div>
   );
