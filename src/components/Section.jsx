@@ -1,13 +1,12 @@
 import React from "react";
 import { memo } from "react";
-import { useSelector } from "react-redux";
+
 import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
 
-const Section = () => {
-  const { hot } = useSelector((state) => state.app);
+const Section = ({ data }) => {
   const navigate = useNavigate();
-  console.log(hot);
+  console.log(data);
   const settings = {
     dots: false,
     infinite: true,
@@ -42,15 +41,15 @@ const Section = () => {
     <div style={{ marginTop: 38 }} className="px-2 d-flex flex-column gap-5 ">
       <div className="d-flex align-items-center justify-content-between">
         <h3 className="fw-bold text" style={{ fontSize: 20 }}>
-          {hot?.title}
+          {data?.title}
         </h3>
         <span style={{ fontSize: 12 }}>TẤT CẢ</span>
       </div>
       <div className="slider-container">
         <Slider {...settings}>
-          {hot &&
-            hot?.items?.length > 0 &&
-            hot.items.map((item) => (
+          {data &&
+            data?.items?.length > 0 &&
+            data.items.map((item) => (
               <div
                 key={item.encodeId}
                 className="d-flex flex-column gap-2 flex-1 text-sm px-2 py-2 cursor-pointer"
@@ -69,7 +68,15 @@ const Section = () => {
                   0,
                   19
                 )}...`}</span>
-                <span>{`${item.sortDescription?.slice(0, 40)}...`}</span>
+                {data?.sectionId === "h100" || data?.sectionId === "hAlbum" ? (
+                  <span>{item.artistsNames}</span>
+                ) : (
+                  <span>
+                    {item.sortDescription?.length >= 40
+                      ? `${item.sortDescription?.slice(0, 35)}...`
+                      : item.sortDescription}
+                  </span>
+                )}
               </div>
             ))}
         </Slider>

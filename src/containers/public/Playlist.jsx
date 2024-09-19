@@ -12,16 +12,17 @@ const { FaPlay } = icons;
 
 const Playlist = () => {
   const { title, pid } = useParams();
-  const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
+  const { isPlaying } = useSelector((state) => state.music);
   const [playlistData, setPlaylistData] = useState({});
   const [shouldAnimate, setShouldAnimate] = useState(false);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchDetailPlayList = async () => {
+      dispatch(actions.loading(true));
       try {
         const response = await apis.apiGetDetailPlaylist(pid);
+        dispatch(actions.loading(false));
         if (response?.data.err === 0) {
           setPlaylistData(response.data?.data);
           dispatch(actions.setPlaylist(response?.data?.data?.song?.items));
@@ -42,7 +43,7 @@ const Playlist = () => {
   }, [isPlaying]);
 
   return (
-    <div className="d-flex gap-1 px-2">
+    <div className="d-flex gap-1 px-2 position-relative">
       <style>
         {`
           /* CSS cho thanh cuộn trong Chrome, Edge, Safari */
@@ -61,6 +62,7 @@ const Playlist = () => {
           }
         `}
       </style>
+
       <div
         style={{ flex: 3 }}
         className="d-flex flex-column align-items-center gap-2"

@@ -2,6 +2,10 @@ import actionTypes from "../actions/actionTypes";
 const initState = {
   banner: [],
   hot: {},
+  chill: {},
+  top100: {},
+  hAlbum: {},
+  isLoading: false,
 };
 const appReducer = (state = initState, action) => {
   switch (action.type) {
@@ -14,8 +18,19 @@ const appReducer = (state = initState, action) => {
         hot:
           action.homeData?.find((item) => item.sectionId === "hEditorTheme1") ||
           {},
+        chill:
+          action.homeData?.find((item) => item.sectionId === "hEditorTheme") ||
+          {},
+        top100:
+          action.homeData?.find((item) => item.sectionId === "h100") || {},
+        hAlbum:
+          action.homeData?.find((item) => item.sectionId === "hAlbum") || {},
       };
-
+    case actionTypes.LOADING:
+      return {
+        ...state,
+        isLoading: action.flag,
+      };
     default:
       return state;
   }
