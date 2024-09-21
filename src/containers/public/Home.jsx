@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Section, SlickSlider } from "../../components";
+import { Section, SlickSlider, NewRelease } from "../../components";
 import { useSelector } from "react-redux";
 import * as apis from "../../apis";
 const Home = () => {
@@ -9,6 +9,7 @@ const Home = () => {
       <SlickSlider />
       <Section data={hot} />
       <Section data={chill} />
+      <NewRelease />
       <Section data={top100} />
       <Section data={hAlbum} />
       <div style={{ height: 500 }}></div>
