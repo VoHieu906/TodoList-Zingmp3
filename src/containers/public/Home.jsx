@@ -2,8 +2,13 @@ import React, { useEffect } from "react";
 import { Section, SlickSlider, NewRelease } from "../../components";
 import { useSelector } from "react-redux";
 import * as apis from "../../apis";
+import { Link } from "react-router-dom";
 const Home = () => {
-  const { hot, chill, top100, hAlbum } = useSelector((state) => state.app);
+  const { hot, chill, top100, hAlbum, weekChart } = useSelector(
+    (state) => state.app
+  );
+  console.log(weekChart);
+
   return (
     <div className="overflow-y-auto">
       <SlickSlider />
@@ -12,6 +17,24 @@ const Home = () => {
       <NewRelease />
       <Section data={top100} />
       <Section data={hAlbum} />
+      <div
+        className="d-flex align-items-center w-100 mt-3 "
+        // style={{ padding: 43 }}
+      >
+        {weekChart?.map((item) => (
+          <Link
+            to={item?.link?.split(".")[0]}
+            key={item.link}
+            className="flex-grow-1 px-3"
+          >
+            <img
+              src={item.cover}
+              alt="cover"
+              className="img-cover rounded w-100"
+            />
+          </Link>
+        ))}
+      </div>
       <div style={{ height: 500 }}></div>
     </div>
   );

@@ -3,13 +3,20 @@ import { memo } from "react";
 import moment from "moment";
 import "moment/locale/vi"; // Import locale tiếng Việt
 import "./css/SongItem.css";
+import { useDispatch } from "react-redux";
+import * as actions from "../store/actions";
 // Thiết lập locale tiếng Việt
 moment.locale("vi");
-const SongItem = ({ thumbnail, title, artists, releaseDate }) => {
+const SongItem = ({ thumbnail, title, artists, releaseDate, sid }) => {
+  const dispatch = useDispatch();
   return (
     <div
       className=" d-flex gap-3 rounded song-item cursor-pointer"
       style={{ width: "30%", padding: 10 }}
+      onClick={() => {
+        dispatch(actions.setCurSongId(sid));
+        dispatch(actions.play(true));
+      }}
     >
       <img
         src={thumbnail}
