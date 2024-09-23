@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
 import "./css/Playlist.css";
 import icons from "../../ultis/Icons";
-
+import { useLocation } from "react-router-dom";
 const { FaPlay } = icons;
 
 const Playlist = () => {
@@ -41,6 +41,18 @@ const Playlist = () => {
       setShouldAnimate(true);
     }
   }, [isPlaying]);
+  useEffect(() => {
+    if (location.state?.playAlbum) {
+      const randomSong =
+        Math.round(Math.random() * playlistData?.song?.items?.length) - 1;
+      dispatch(
+        actions.setCurSongId(playlistData?.song?.items[randomSong]?.encodeId)
+      );
+      dispatch(actions.play(true));
+    }
+  }, [pid, playlistData]);
+  const location = useLocation();
+  console.log(location);
 
   return (
     <div className="d-flex gap-1 px-2 position-relative">

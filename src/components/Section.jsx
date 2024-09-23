@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { memo } from "react";
-
 import Slider from "react-slick";
-import { useNavigate } from "react-router-dom";
-
+import { SectionItem } from "./";
 const Section = ({ data }) => {
-  const navigate = useNavigate();
   console.log(data);
   const settings = {
     dots: false,
@@ -50,34 +47,15 @@ const Section = ({ data }) => {
           {data &&
             data?.items?.length > 0 &&
             data.items.map((item) => (
-              <div
+              <SectionItem
                 key={item.encodeId}
-                className="d-flex flex-column gap-2 flex-1 text-sm px-2 py-2 cursor-pointer"
-              >
-                <img
-                  src={item.thumbnailM}
-                  alt={item.title}
-                  onClick={() => {
-                    navigate(item?.link?.split(".")[0]);
-                    console.log(item?.link?.split(".")[0]);
-                  }}
-                  className="w-100 object-contain rounded-lg"
-                />
-
-                <span className="fw-semibold">{`${item.title?.slice(
-                  0,
-                  19
-                )}...`}</span>
-                {data?.sectionId === "h100" || data?.sectionId === "hAlbum" ? (
-                  <span>{item.artistsNames}</span>
-                ) : (
-                  <span>
-                    {item.sortDescription?.length >= 40
-                      ? `${item.sortDescription?.slice(0, 35)}...`
-                      : item.sortDescription}
-                  </span>
-                )}
-              </div>
+                thumbnailM={item.thumbnailM}
+                title={item.title}
+                link={item.link}
+                artistsNames={item.artistsNames}
+                sortDescription={item.sortDescription}
+                data={data}
+              />
             ))}
         </Slider>
       </div>

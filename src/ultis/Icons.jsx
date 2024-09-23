@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { BsSearch, BsMusicNoteList } from "react-icons/bs";
 import { GoHeart, GoHeartFill } from "react-icons/go";
-import { PiDotsThree } from "react-icons/pi";
+import { PiDotsThree, PiDotsThreeBold } from "react-icons/pi";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import {
   FaRegPauseCircle,
@@ -55,6 +55,7 @@ const Icons = {
   LuDot,
   RiRepeatOneLine,
   BsMusicNoteList,
+  PiDotsThreeBold,
 };
 
 export default Icons;
