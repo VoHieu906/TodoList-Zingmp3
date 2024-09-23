@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { Section, SlickSlider, NewRelease } from "../../components";
+import {
+  Section,
+  SlickSlider,
+  NewRelease,
+  ChartSection,
+} from "../../components";
 import { useSelector } from "react-redux";
 import * as apis from "../../apis";
 import { Link } from "react-router-dom";
@@ -17,10 +22,8 @@ const Home = () => {
       <NewRelease />
       <Section data={top100} />
       <Section data={hAlbum} />
-      <div
-        className="d-flex align-items-center w-100 mt-3 "
-        // style={{ padding: 43 }}
-      >
+      <ChartSection />
+      <div className="d-flex align-items-center w-100 mt-5 ">
         {weekChart?.map((item) => (
           <Link
             to={item?.link?.split(".")[0]}
