@@ -10,6 +10,7 @@ import {
   Personal,
   Playlist,
   WeekRank,
+  ZingChart,
 } from "./containers/public"; //src\containers\public\index.jsx
 import { Routes, Route } from "react-router-dom";
 import Path from "./ultis/path";
@@ -36,6 +37,7 @@ function App() {
             <Route path={Path.ALBUM_TITLE_PID} element={<Playlist />} />
             <Route path={Path.STAR} element={<Home />} />
             <Route path={Path.WEEKRANK_TITLE_PID} element={<WeekRank />} />
+            <Route path={Path.ZING_CHART} element={<ZingChart />} />
           </Route>
         </Routes>
       </div>

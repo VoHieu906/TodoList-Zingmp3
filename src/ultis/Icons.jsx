@@ -10,6 +10,7 @@ import {
   FaLongArrowAltLeft,
   FaLongArrowAltRight,
   FaPlay,
+  FaPlayCircle,
 } from "react-icons/fa";
 import { BsSearch, BsMusicNoteList } from "react-icons/bs";
 import { GoHeart, GoHeartFill } from "react-icons/go";
@@ -46,6 +47,7 @@ const Icons = {
   FaRegCirclePlay,
   FaRegPauseCircle,
   FaPlay,
+  FaPlayCircle,
   IoIosRepeat,
   IoIosShuffle,
   IoPlayCircleOutline,

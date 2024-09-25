@@ -16,6 +16,7 @@ const SongItem = ({
   sid,
   order,
   percent,
+  style,
 }) => {
   const dispatch = useDispatch();
   return (
@@ -27,7 +28,7 @@ const SongItem = ({
       gap-3
       rounded
       cursor-pointer 
-      ${order ? "text-light song-item-order order-bg-color" : "song-item"}`}
+      ${style || "song-item"}`}
       style={{ width: "100%", padding: 10 }}
       onClick={() => {
         dispatch(actions.setCurSongId(sid));
@@ -36,7 +37,15 @@ const SongItem = ({
     >
       <div className="d-flex gap-4 align-items-center">
         {order && (
-          <span className={`${order === 1 ? "order1" : ""} text-order`}>
+          <span
+            className={`${
+              order === 1
+                ? "text-shadow-no1"
+                : order === 2
+                ? "text-shadow-no2"
+                : "text-shadow-no3"
+            } text-order`}
+          >
             {order}
           </span>
         )}
@@ -61,7 +70,7 @@ const SongItem = ({
           )}
         </div>
       </div>
-      {percent && <span>{`${percent}%`}</span>}
+      {percent && <span className="fw-bold">{`${percent}%`}</span>}
     </div>
   );
 };

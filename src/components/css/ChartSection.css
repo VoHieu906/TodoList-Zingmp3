@@ -6,3 +6,6 @@
     rgba(51, 16, 76, 0.5)
   );
 }
+.zing-chart:hover h3 {
+  color: #198754;
+}
