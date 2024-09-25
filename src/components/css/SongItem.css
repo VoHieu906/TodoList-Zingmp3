@@ -1,3 +1,14 @@
 .song-item:hover {
   background-color: #dde4e4;
 }
+.song-item-order:hover {
+  background-color: #945ea7;
+}
+.text-order {
+  font-size: 32px;
+}
+.order-bg-color {
+  background-color: hsla(0, 0%, 100%, 0.07);
+}
+.order1 {
+}

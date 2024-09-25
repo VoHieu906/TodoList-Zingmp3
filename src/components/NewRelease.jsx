@@ -57,14 +57,15 @@ const NewRelease = () => {
       </div>
       <div className="d-flex flex-wrap w-100 justify-content-center ">
         {songs?.slice(0, 15).map((item) => (
-          <SongItem
-            key={item.encodeId}
-            thumbnail={item.thumbnail}
-            title={item.title}
-            artists={item.artistsNames}
-            releaseDate={item.releaseDate}
-            sid={item.encodeId}
-          />
+          <div key={item.encodeId} style={{ width: "30%" }}>
+            <SongItem
+              thumbnail={item.thumbnail}
+              title={item.title}
+              artists={item.artistsNames}
+              releaseDate={item.releaseDate}
+              sid={item.encodeId}
+            />
+          </div>
         ))}
       </div>
     </div>
