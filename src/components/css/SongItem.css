@@ -8,8 +8,19 @@
   font-size: 32px;
   color: rgba(77, 34, 104, 0.9);
 }
+.img-60 {
+  width: 60px;
+  height: 60px;
+}
+.img-40 {
+  width: 40px;
+  height: 40px;
+}
 .order-bg-color {
   background-color: hsla(0, 0%, 100%, 0.07);
+}
+.bg-main-500 {
+  background-color: #0e8080;
 }
 /* .order1 {
 } */

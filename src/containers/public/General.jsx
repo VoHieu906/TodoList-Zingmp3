@@ -12,7 +12,7 @@ import { Scrollbars } from "react-custom-scrollbars-2";
 import { useSelector } from "react-redux";
 const General = () => {
   const columnClass =
-    "col-xl-2 col-lg-3 pt-3 d-flex m-0 p-0 border border-secondary";
+    "col-xl-2 col-lg-3  d-flex m-0 p-0 border border-secondary";
   const [isShowRightSidebar, setIsShowRightSidebar] = useState(true);
   const { isLoading } = useSelector((state) => state.app);
   return (
@@ -27,11 +27,11 @@ const General = () => {
         className="container-fluid row m-0 p-0 w-100 position-relative"
         style={{ minHeight: "100vh" }}
       >
-        <div className={`${columnClass} justify-content-start ps-4`}>
+        <div className={`${columnClass} justify-content-start ps-4 pt-3`}>
           <LeftSidebar />
         </div>
         <div
-          className={`col-xl-8 col-lg-6 pt-3 m-0 p-0 border border-primary overflow-y-auto d-flex flex-column flex-grow-1 flex-shrink-1 position-relative ${
+          className={`col-xl-8 col-lg-6  m-0 p-0 border border-primary overflow-y-auto d-flex flex-column flex-grow-1 flex-shrink-1 position-relative ${
             !isShowRightSidebar ? "flex-grow-1" : ""
           }`}
           style={{ zIndex: 1, boxSizing: "border-box" }} // Ensure relative positioning and a lower zIndex for the parent
@@ -50,7 +50,7 @@ const General = () => {
             </div>
           )}
 
-          <div className="px-2 d-flex" style={{ height: "70px" }}>
+          <div className="px-2 d-flex " style={{ height: "70px" }}>
             <Header className="w-100" />
           </div>
           <div className="flex-grow-1 flex-shrink-1 w-100">
@@ -62,7 +62,8 @@ const General = () => {
 
         {isShowRightSidebar && (
           <div
-            className={`${columnClass} justify-content-center d-none d-xl-flex`}
+            className={`${columnClass}  d-none d-xl-flex `}
+            style={{ height: "100vh" }}
           >
             <Rightsidebar />
           </div>

@@ -17,6 +17,8 @@ const SongItem = ({
   order,
   percent,
   style,
+  sm,
+  rsb,
 }) => {
   const dispatch = useDispatch();
   return (
@@ -35,7 +37,7 @@ const SongItem = ({
         dispatch(actions.play(true));
       }}
     >
-      <div className="d-flex gap-4 align-items-center">
+      <div className="d-flex gap-3 align-items-center">
         {order && (
           <span
             className={`${
@@ -52,13 +54,18 @@ const SongItem = ({
         <img
           src={thumbnail}
           alt="thumbnail"
-          style={{ width: 60, height: 60 }}
-          className="rounded"
+          className={`rounded ${sm ? "img-40" : "img-60"}`}
         />
 
         <div className="d-flex flex-column">
-          <span className="text-sm fw-semibold">
-            {title?.length >= 20 ? `${title.slice(0, 20)} ...` : title}
+          <span className=" fw-semibold" style={{ fontSize: 14 }}>
+            {rsb
+              ? title?.length >= 15
+                ? `${title.slice(0, 15)} ...`
+                : title
+              : title?.length >= 20
+              ? `${title.slice(0, 20)} ...`
+              : title}
           </span>
           <span className="text-xs opacity-75">{artists}</span>
           {releaseDate && (

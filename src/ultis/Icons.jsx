@@ -23,7 +23,11 @@ import {
   FaVolumeDown,
 } from "react-icons/fa";
 import { IoIosRepeat, IoIosShuffle, IoIosMusicalNotes } from "react-icons/io";
-import { IoPlayCircleOutline, IoPauseCircleOutline } from "react-icons/io5";
+import {
+  IoPlayCircleOutline,
+  IoPauseCircleOutline,
+  IoTrashBin,
+} from "react-icons/io5";
 import { CiMusicNote1 } from "react-icons/ci";
 import { LuDot } from "react-icons/lu";
 import { RiRepeatOneLine } from "react-icons/ri";
@@ -52,6 +56,7 @@ const Icons = {
   IoIosShuffle,
   IoPlayCircleOutline,
   IoPauseCircleOutline,
+  IoTrashBin,
   IoIosMusicalNotes,
   CiMusicNote1,
   LuDot,

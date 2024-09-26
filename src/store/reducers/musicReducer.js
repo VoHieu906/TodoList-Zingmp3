@@ -4,6 +4,8 @@ const initState = {
   isPlaying: false,
   atPlaylist: false,
   songs: null,
+  curSongData: null,
+  curAlbumId: null,
 };
 const musicReducer = (state = initState, action) => {
   switch (action.type) {
@@ -11,6 +13,11 @@ const musicReducer = (state = initState, action) => {
       return {
         ...state,
         curSongId: action.sid || null,
+      };
+    case actionTypes.SET_CUR_SONG_DATA:
+      return {
+        ...state,
+        curSongData: action.data || null,
       };
     case actionTypes.PLAY:
       return {
@@ -26,6 +33,11 @@ const musicReducer = (state = initState, action) => {
       return {
         ...state,
         songs: action.songs || null,
+      };
+    case actionTypes.SET_CUR_ALBUM_ID:
+      return {
+        ...state,
+        curAlbumId: action.pid || null,
       };
     default:
       return state;

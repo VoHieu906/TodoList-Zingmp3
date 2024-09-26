@@ -18,6 +18,7 @@ const Playlist = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(actions.setCurAlbumId(pid));
     const fetchDetailPlayList = async () => {
       dispatch(actions.loading(true));
       try {
@@ -41,6 +42,7 @@ const Playlist = () => {
       setShouldAnimate(true);
     }
   }, [isPlaying]);
+
   useEffect(() => {
     if (location.state?.playAlbum) {
       const randomSong =
@@ -52,7 +54,6 @@ const Playlist = () => {
     }
   }, [pid, playlistData]);
   const location = useLocation();
-  console.log(location);
 
   return (
     <div className="d-flex gap-1 px-2 position-relative">

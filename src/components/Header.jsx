@@ -3,9 +3,11 @@ import Icons from "../ultis/Icons";
 import Search from "./Search";
 const { FaLongArrowAltLeft, FaLongArrowAltRight } = Icons;
 const Header = () => {
-  const aic = "align-items-center";
   return (
-    <div className="row w-100" style={{ height: "60px" }}>
+    <div
+      className="row w-100 d-flex align-items-center"
+      style={{ height: "70px" }}
+    >
       <div className="col-md-10">
         <div className=" row ">
           <div className="col-md-2">

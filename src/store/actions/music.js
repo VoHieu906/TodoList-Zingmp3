@@ -4,6 +4,10 @@ export const setCurSongId = (sid) => ({
   type: actionTypes.SET_CUR_SONG_ID,
   sid,
 });
+export const setCurSongData = (data) => ({
+  type: actionTypes.SET_CUR_SONG_DATA,
+  data,
+});
 export const play = (flag) => ({
   type: actionTypes.PLAY,
   flag,
@@ -19,6 +23,10 @@ export const setPlaylist = (songs) => ({
 export const loading = (flag) => ({
   type: actionTypes.LOADING,
   flag,
+});
+export const setCurAlbumId = (pid) => ({
+  type: actionTypes.SET_CUR_ALBUM_ID,
+  pid,
 });
 // export const fetchDetailPlayList = (pid) => async (dispatch) => {
 //   try {
