@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import Icons from "../ultis/Icons";
 import { useSelector } from "react-redux";
 import { customBackgoundColors } from "../ultis/colors";
-import { SongItem } from "./";
-import "./css/RightsideBar.css";
+import { SongItem } from ".";
+import "./css/RightSidebar.css";
 import { apiGetDetailPlaylist } from "../apis";
 import { Scrollbars } from "react-custom-scrollbars-2";
 const { IoTrashBin } = Icons;
-const Rightsidebar = () => {
+const RightSidebar = () => {
   const [isRecent, setIsRecent] = useState(false);
   const { curSongData, curAlbumId, curSongId, isPlaying, recentSongs } =
     useSelector((state) => state.music);
@@ -135,4 +135,4 @@ const Rightsidebar = () => {
   );
 };
 
-export default Rightsidebar;
+export default RightSidebar;
