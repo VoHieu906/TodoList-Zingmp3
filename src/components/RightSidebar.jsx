@@ -9,20 +9,22 @@ import { Scrollbars } from "react-custom-scrollbars-2";
 const { IoTrashBin } = Icons;
 const Rightsidebar = () => {
   const [isRecent, setIsRecent] = useState(false);
-  const { curSongData, curAlbumId, isPlaying } = useSelector(
-    (state) => state.music
-  );
+  const { curSongData, curAlbumId, curSongId, isPlaying, recentSongs } =
+    useSelector((state) => state.music);
   const [playlist, setPlaylist] = useState();
-  console.log(curSongData);
+  const fetchDetailPlaylist = async () => {
+    const response = await apiGetDetailPlaylist(curAlbumId);
+    if (response.data?.err === 0) setPlaylist(response.data?.data?.song?.items);
+  };
   useEffect(() => {
-    const fetchDetailPlaylist = async () => {
-      const response = await apiGetDetailPlaylist(curAlbumId);
-      if (response.data?.err === 0)
-        setPlaylist(response.data?.data?.song?.items);
-    };
-
+    if (curAlbumId) fetchDetailPlaylist();
+  }, []);
+  useEffect(() => {
     if (curAlbumId && isPlaying) fetchDetailPlaylist();
   }, [curAlbumId, isPlaying]);
+  useEffect(() => {
+    isPlaying && setIsRecent(false);
+  }, [isPlaying, curSongId]);
   return (
     <div
       className="d-flex flex-column w-100"
@@ -60,50 +62,75 @@ const Rightsidebar = () => {
           <IoTrashBin size={16} />
         </span>
       </div>
-      <div className="w-100 d-flex flex-column px-2 flex-grow-1 flex-shrink-1">
-        <Scrollbars autoHide style={{ width: "100%", height: "100%" }}>
-          <SongItem
-            thumbnail={curSongData?.thumbnail}
-            title={curSongData?.title}
-            artists={curSongData?.artistsNames}
-            sid={curSongData?.encodeId}
-            sm={true}
-            style={"bg-main-500 text-light"}
-          />
-          <div
-            className="d-flex flex-column text-dark px-2"
-            style={{ paddingTop: 15, paddingBottom: 5 }}
-          >
-            <span style={{ fontSize: 14 }} className="fw-bold">
-              Tiếp theo
-            </span>
-            <span className="opacity-75 text-xs d-flex gap-1">
-              <span>Playlist: </span>
-              <span className="fw-semibold text-main-500">
-                {curSongData?.album.title.length >= 20
-                  ? `${curSongData?.album.title.slice(0, 20)}...`
-                  : curSongData?.album.title}
+      {isRecent ? (
+        <div
+          className="w-100 d-flex flex-column px-2 flex-grow-1 flex-shrink-1"
+          style={{ marginBottom: 90 }}
+        >
+          <Scrollbars autoHide style={{ width: "100%", height: "100%" }}>
+            {recentSongs && (
+              <div className="d-flex flex-column">
+                {recentSongs?.map((item) => (
+                  <SongItem
+                    key={item.sid}
+                    thumbnail={item?.thumbnail}
+                    title={item?.title}
+                    artists={item?.artists}
+                    sid={item?.sid}
+                    sm={true}
+                    rsb
+                  />
+                ))}
+              </div>
+            )}
+          </Scrollbars>
+        </div>
+      ) : (
+        <div className="w-100 d-flex flex-column px-2 flex-grow-1 flex-shrink-1">
+          <Scrollbars autoHide style={{ width: "100%", height: "100%" }}>
+            <SongItem
+              thumbnail={curSongData?.thumbnail}
+              title={curSongData?.title}
+              artists={curSongData?.artistsNames}
+              sid={curSongData?.encodeId}
+              sm={true}
+              style={"bg-main-500 text-light"}
+            />
+            <div
+              className="d-flex flex-column text-dark px-2"
+              style={{ paddingTop: 15, paddingBottom: 5 }}
+            >
+              <span style={{ fontSize: 14 }} className="fw-bold">
+                Tiếp theo
               </span>
-            </span>
-          </div>
-
-          {playlist && (
-            <div className="d-flex flex-column" style={{ marginBottom: 90 }}>
-              {playlist?.map((item) => (
-                <SongItem
-                  key={item?.encodeId}
-                  thumbnail={item?.thumbnail}
-                  title={item?.title}
-                  artists={item?.artistsNames}
-                  sid={item?.encodeId}
-                  sm={true}
-                  rsb
-                />
-              ))}
+              <span className="opacity-75 text-xs d-flex gap-1">
+                <span>Playlist: </span>
+                <span className="fw-semibold text-main-500">
+                  {curSongData?.album.title.length >= 20
+                    ? `${curSongData?.album.title.slice(0, 20)}...`
+                    : curSongData?.album.title}
+                </span>
+              </span>
             </div>
-          )}
-        </Scrollbars>
-      </div>
+
+            {playlist && (
+              <div className="d-flex flex-column" style={{ marginBottom: 90 }}>
+                {playlist?.map((item) => (
+                  <SongItem
+                    key={item?.encodeId}
+                    thumbnail={item?.thumbnail}
+                    title={item?.title}
+                    artists={item?.artistsNames}
+                    sid={item?.encodeId}
+                    sm={true}
+                    rsb
+                  />
+                ))}
+              </div>
+            )}
+          </Scrollbars>
+        </div>
+      )}
     </div>
   );
 };

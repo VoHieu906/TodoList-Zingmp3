@@ -6,6 +6,7 @@ const initState = {
   songs: null,
   curSongData: null,
   curAlbumId: null,
+  recentSongs: [],
 };
 const musicReducer = (state = initState, action) => {
   switch (action.type) {
@@ -39,6 +40,29 @@ const musicReducer = (state = initState, action) => {
         ...state,
         curAlbumId: action.pid || null,
       };
+    case actionTypes.SET_RECENT: {
+      let songs = state.recentSongs;
+
+      if (action.data) {
+        // Loại bỏ bài hát nếu đã có trong danh sách
+        if (songs?.some((i) => i.sid === action.data.sid)) {
+          songs = songs.filter((i) => i.sid !== action.data.sid);
+        }
+
+        // Giới hạn số lượng bài hát nếu vượt quá 2 bài
+        if (songs?.length > 20) {
+          songs = songs.filter((i, index, self) => index !== self.length - 1);
+        }
+
+        // Thêm bài hát mới vào đầu danh sách
+        songs = [action.data, ...songs];
+      }
+      return {
+        ...state,
+        recentSongs: songs,
+      };
+    }
+
     default:
       return state;
   }

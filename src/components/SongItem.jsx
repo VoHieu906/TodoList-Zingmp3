@@ -35,6 +35,7 @@ const SongItem = ({
       onClick={() => {
         dispatch(actions.setCurSongId(sid));
         dispatch(actions.play(true));
+        dispatch(actions.setRecent({ thumbnail, title, sid, artists }));
       }}
     >
       <div className="d-flex gap-3 align-items-center">

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import icons from "../ultis/Icons";
 import moment from "moment";
 import "./css/ListItem.css";
@@ -16,6 +16,14 @@ const ListItem = ({ songData }) => {
         dispatch(actions.setCurSongId(songData?.encodeId));
         dispatch(actions.play(true));
         dispatch(actions.playPlaylist(true));
+        dispatch(
+          actions.setRecent({
+            thumbnail: songData?.thumbnail,
+            title: songData?.title,
+            sid: songData?.encodeId,
+            artists: songData?.artistsNames,
+          })
+        );
       }}
     >
       <div
