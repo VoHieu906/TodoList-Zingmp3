@@ -32,20 +32,24 @@ export const setRecent = (data) => ({
   type: actionTypes.SET_RECENT,
   data,
 });
-// export const fetchDetailPlayList = (pid) => async (dispatch) => {
-//   try {
-//     const response = await apis.apiGetDetailPlaylist(pid);
-
-//     if (response?.data.err === 0) {
-//       dispatch({
-//         type: actionTypes.PLAYLIST,
-//         songs: response.data?.data?.items,
-//       });
-//     }
-//   } catch (error) {
-//     dispatch({
-//       type: actionTypes.PLAYLIST,
-//       songs: null,
-//     });
-//   }
-// };
+export const search = (keyword) => async (dispatch) => {
+  try {
+    const response = await apis.apiSearch(keyword);
+    if (response.data.err === 0) {
+      dispatch({
+        type: actionTypes.SEARCH,
+        data: response.data.data,
+      });
+    } else {
+      dispatch({
+        type: actionTypes.SEARCH,
+        data: null,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: actionTypes.SEARCH,
+      data: null,
+    });
+  }
+};

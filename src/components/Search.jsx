@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Icons from "../ultis/Icons";
 import { apiSearch } from "../apis";
+import * as action from "../store/actions";
+import { useNavigate, createSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Path from "../ultis/Path";
 const { BsSearch } = Icons;
 const Search = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
   const handleSearch = async (e) => {
     if (e.keyCode === 13) {
-      const response = await apiSearch(keyword);
-      console.log(response);
+      dispatch(action.search(keyword));
+      navigate({
+        pathname: `/${Path.SEARCH}/${Path.ALL}`,
+        search: createSearchParams({
+          q: keyword,
+        }).toString(),
+      });
     }
   };
   return (
