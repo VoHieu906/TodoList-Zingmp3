@@ -16,11 +16,18 @@
   width: 40px;
   height: 40px;
 }
-.order-bg-color {
+.img-84 {
+  width: 84px;
+  height: 84px;
+}
+.o .order-bg-color {
   background-color: hsla(0, 0%, 100%, 0.07);
 }
 .bg-main-500 {
   background-color: #0e8080;
+}
+.bg-main-200 {
+  background-color: #dde4e4;
 }
 /* .order1 {
 } */

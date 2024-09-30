@@ -71,7 +71,7 @@ const SectionItem = ({
       </div>
 
       <span className="fw-semibold">{`${title?.slice(0, 19)}...`}</span>
-      {data.sectionId === "h100" || data.sectionId === "hAlbum" ? (
+      {data?.sectionId === "h100" || data?.sectionId === "hAlbum" ? (
         <span>
           {artistsNames?.length >= 20
             ? `${artistsNames?.slice(0, 20)}...`
@@ -79,8 +79,8 @@ const SectionItem = ({
         </span>
       ) : (
         <span>
-          {sortDescription?.length >= 40
-            ? `${sortDescription?.slice(0, 35)}...`
+          {sortDescription?.length >= 20
+            ? `${sortDescription?.slice(0, 20)}...`
             : sortDescription}
         </span>
       )}

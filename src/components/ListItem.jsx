@@ -5,13 +5,13 @@ import "./css/ListItem.css";
 import { useDispatch } from "react-redux";
 import * as actions from "../store/actions";
 const { IoIosMusicalNotes } = icons;
-const ListItem = ({ songData }) => {
+const ListItem = ({ songData, isHideAlbum }) => {
   const dispatch = useDispatch();
 
   return (
     <div
-      className="d-flex align-items-center justify-content-between py-2 hover-effect"
-      style={{ borderTop: "1px solid #6c757d" }}
+      className="d-flex align-items-center justify-content-between py-2 hover-effect w-100"
+      style={{ borderTop: "1px solid rgba(0,0,0,0.05)" }}
       onClick={() => {
         dispatch(actions.setCurSongId(songData?.encodeId));
         dispatch(actions.play(true));
@@ -30,9 +30,12 @@ const ListItem = ({ songData }) => {
         className="d-flex align-items-center gap-2 flex-grow-1"
         style={{ width: "50%" }}
       >
-        <span>
-          <IoIosMusicalNotes />
-        </span>
+        {!isHideAlbum && (
+          <span>
+            <IoIosMusicalNotes />
+          </span>
+        )}
+
         <img
           src={songData?.thumbnail}
           style={{ height: "60px" }}
@@ -40,20 +43,30 @@ const ListItem = ({ songData }) => {
           alt=""
         />
         <span className="d-flex flex-column">
-          <span className=" fw-semibold title">
+          <span className=" fw-semibold title" style={{ fontSize: 14 }}>
             {songData?.title?.length > 30
               ? `${songData?.title.slice(0, 25)}...`
               : songData?.title}
           </span>
-          <span className="artist-name">{songData?.artistsNames}</span>
+          <span className="artist-name opacity-75" style={{ fontSize: 12 }}>
+            {songData?.artistsNames}
+          </span>
         </span>
       </div>
-      <div className="album-title flex-grow-1 " style={{ width: "40%" }}>
-        {songData?.album?.title?.length > 30
-          ? `${songData?.album?.title.slice(0, 20)} ...`
-          : songData?.album?.title}
-      </div>
-      <div className="songduration flex-grow-1 " style={{ width: "10%" }}>
+      {!isHideAlbum && (
+        <div className="album-title flex-grow-1 " style={{ width: "40%" }}>
+          {songData?.album?.title?.length > 30
+            ? `${songData?.album?.title.slice(0, 20)} ...`
+            : songData?.album?.title}
+        </div>
+      )}
+
+      <div
+        className={`songduration flex-grow-1 opacity-75 ${
+          isHideAlbum && " d-flex justify-content-end"
+        }`}
+        style={{ width: "10%", paddingRight: 20 }}
+      >
         {moment.utc(songData?.duration * 1000).format("mm:ss")}
       </div>
     </div>

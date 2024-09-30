@@ -5,7 +5,7 @@ const Search = () => {
   return (
     <div>
       <div
-        className="d-flex align-items-center border-bottom border-secondary py-1 px-2"
+        className="d-flex align-items-center border-bottom border-secondary py-1 px-4"
         style={{ marginBottom: 28, height: 50 }}
       >
         <span
@@ -29,6 +29,7 @@ const Search = () => {
       <div>
         <Outlet />
       </div>
+      <div style={{ height: 120 }}></div>
     </div>
   );
 };

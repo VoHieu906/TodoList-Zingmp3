@@ -17,7 +17,7 @@ const SongItem = ({
   order,
   percent,
   style,
-  sm,
+  size,
   rsb,
 }) => {
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ const SongItem = ({
         <img
           src={thumbnail}
           alt="thumbnail"
-          className={`rounded ${sm ? "img-40" : "img-60"}`}
+          className={`rounded ${size || "img-60"}`}
         />
 
         <div className="d-flex flex-column">

@@ -77,7 +77,7 @@ const RightSidebar = () => {
                     title={item?.title}
                     artists={item?.artists}
                     sid={item?.sid}
-                    sm={true}
+                    size="img-40"
                     rsb
                   />
                 ))}
@@ -93,7 +93,7 @@ const RightSidebar = () => {
               title={curSongData?.title}
               artists={curSongData?.artistsNames}
               sid={curSongData?.encodeId}
-              sm={true}
+              size="img-40"
               style={"bg-main-500 text-light"}
             />
             <div
@@ -122,7 +122,7 @@ const RightSidebar = () => {
                     title={item?.title}
                     artists={item?.artistsNames}
                     sid={item?.encodeId}
-                    sm={true}
+                    size="img-40"
                     rsb
                   />
                 ))}
