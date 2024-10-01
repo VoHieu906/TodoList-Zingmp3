@@ -1,0 +1,7 @@
+.scale {
+  transform: scale(1.2);
+}
+.text-hover:hover {
+  color: #0e8080;
+  text-decoration: underline;
+}

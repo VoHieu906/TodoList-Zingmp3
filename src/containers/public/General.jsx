@@ -11,8 +11,7 @@ import { customBackgoundColors } from "../../ultis/colors";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import { useSelector } from "react-redux";
 const General = () => {
-  const columnClass =
-    "col-xl-2 col-lg-3  d-flex m-0 p-0 border border-secondary";
+  const columnClass = "col-xl-2 col-lg-3  d-flex m-0 p-0 ";
   const [isShowRightSidebar, setIsShowRightSidebar] = useState(true);
   const { isLoading } = useSelector((state) => state.app);
   return (
@@ -31,7 +30,7 @@ const General = () => {
           <LeftSidebar />
         </div>
         <div
-          className={`col-xl-8 col-lg-6  m-0 p-0 border border-primary overflow-y-auto d-flex flex-column flex-grow-1 flex-shrink-1 position-relative ${
+          className={`col-xl-8 col-lg-6  m-0 p-0  overflow-y-auto d-flex flex-column flex-grow-1 flex-shrink-1 position-relative ${
             !isShowRightSidebar ? "flex-grow-1" : ""
           }`}
           style={{ zIndex: 1, boxSizing: "border-box" }} // Ensure relative positioning and a lower zIndex for the parent

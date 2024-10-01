@@ -14,6 +14,8 @@ import {
   Search,
   SearchSong,
   SearchAll,
+  SearchPlaylist,
+  Singer,
 } from "./containers/public"; //src\containers\public\index.jsx
 import { Routes, Route } from "react-router-dom";
 import Path from "./ultis/path";
@@ -36,14 +38,16 @@ function App() {
             <Route path={Path.HOME} element={<Home />} />
             <Route path={Path.LOGIN} element={<Login />} />
             <Route path={Path.MY_MUSIC} element={<Personal />} />
-            <Route path={Path.PLAYLIST_TITLE_PID} element={<Playlist />} />
-            <Route path={Path.ALBUM_TITLE_PID} element={<Playlist />} />
+            <Route path={Path.PLAYLIST__TITLE__PID} element={<Playlist />} />
+            <Route path={Path.ALBUM__TITLE__PID} element={<Playlist />} />
             <Route path={Path.STAR} element={<Home />} />
-            <Route path={Path.WEEKRANK_TITLE_PID} element={<WeekRank />} />
+            <Route path={Path.WEEKRANK__TITLE__PID} element={<WeekRank />} />
             <Route path={Path.ZING_CHART} element={<ZingChart />} />
+            <Route path={Path.HOME__SINGER} element={<Singer />} />
             <Route path={Path.SEARCH} element={<Search />}>
               <Route path={Path.ALL} element={<SearchAll />} />
               <Route path={Path.SONG} element={<SearchSong />} />
+              <Route path={Path.PLAYLIST_SEARCH} element={<SearchPlaylist />} />
             </Route>
           </Route>
         </Routes>

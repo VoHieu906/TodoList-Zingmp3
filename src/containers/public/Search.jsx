@@ -1,7 +1,16 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, Outlet, useSearchParams } from "react-router-dom";
 import "./css/Search.css";
+import { SearchMenu } from "../../ultis/Menu";
+import { useSelector } from "react-redux";
+const searchnotActiveStyle =
+  "px-4 search-category fw-semibold cursor-pointer not-active text-dark";
+const searchactiveStyle =
+  "px-4 search-category fw-semibold cursor-pointer active";
 const Search = () => {
+  const { keyword } = useSelector((state) => state.music);
+  console.log(keyword);
+
   return (
     <div>
       <div
@@ -14,17 +23,20 @@ const Search = () => {
         >
           Kết quả tìm kiếm
         </span>
-        <span style={{ fontSize: 14 }} className="d-flex align-items-center">
-          <span className="px-4 search-category fw-semibold cursor-pointer">
-            TẤT CẢ
-          </span>
-          <span className="px-4 search-category fw-semibold cursor-pointer">
-            BÀI HÁT
-          </span>
-          <span className="px-4 search-category fw-semibold cursor-pointer">
-            PLAYLIST/ALBUM
-          </span>
-        </span>
+        <div style={{ fontSize: 14 }} className="d-flex align-items-center">
+          {SearchMenu.map((item) => (
+            <NavLink
+              key={item.path}
+              to={`${item.path}?q=${keyword.replace("", "+")}`}
+              className={({ isActive }) =>
+                isActive ? searchactiveStyle : searchnotActiveStyle
+              }
+              style={{ textDecoration: "none" }}
+            >
+              {item.text}
+            </NavLink>
+          ))}
+        </div>
       </div>
       <div>
         <Outlet />

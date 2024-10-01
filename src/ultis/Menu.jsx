@@ -25,3 +25,23 @@ export const SidebarMenu = [
     icon: <RiUserFollowFill size={24} />,
   },
 ];
+export const SearchMenu = [
+  {
+    path: "tat-ca",
+    text: "TẤT CẢ",
+  },
+  {
+    path: "bai-hat",
+    text: "BÀI HÁT",
+  },
+  {
+    path: "playlist",
+    text: "PLAYLIST/ALBUM",
+  },
+  // {
+  //   path: "follow",
+  //   text: "Theo dõi",
+  //   end: "true",
+  //   icon: <RiUserFollowFill size={24} />,
+  // },
+];

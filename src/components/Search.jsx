@@ -4,7 +4,9 @@ import { apiSearch } from "../apis";
 import * as action from "../store/actions";
 import { useNavigate, createSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import Path from "../ultis/Path";
+import Path from "../ultis/path";
+import { NavLink } from "react-router-dom";
+
 const { BsSearch } = Icons;
 const Search = () => {
   const navigate = useNavigate();

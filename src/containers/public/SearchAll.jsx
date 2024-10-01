@@ -140,6 +140,7 @@ const SearchAll = () => {
                 name={item.name}
                 thumbnailM={item.thumbnailM}
                 totalFollow={item.totalFollow}
+                link={item.link}
               />
             </div>
           ))}

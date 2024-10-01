@@ -70,7 +70,7 @@ const SectionItem = ({
         />
       </div>
 
-      <span className="fw-semibold">{`${title?.slice(0, 19)}...`}</span>
+      <span className="fw-semibold">{`${title?.slice(0, 15)}...`}</span>
       {data?.sectionId === "h100" || data?.sectionId === "hAlbum" ? (
         <span>
           {artistsNames?.length >= 20

@@ -39,6 +39,7 @@ export const search = (keyword) => async (dispatch) => {
       dispatch({
         type: actionTypes.SEARCH,
         data: response.data.data,
+        keyword,
       });
     } else {
       dispatch({
