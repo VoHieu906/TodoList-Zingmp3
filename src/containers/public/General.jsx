@@ -26,7 +26,10 @@ const General = () => {
         className="container-fluid row m-0 p-0 w-100 position-relative"
         style={{ minHeight: "100vh" }}
       >
-        <div className={`${columnClass} justify-content-start ps-4 pt-3`}>
+        <div
+          className={`${columnClass} justify-content-start ps-4 pt-3`}
+          style={{ backgroundColor: customBackgoundColors.color_200 }}
+        >
           <LeftSidebar />
         </div>
         <div

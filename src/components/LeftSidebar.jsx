@@ -4,7 +4,7 @@ import { SidebarMenu } from "../ultis/Menu"; //
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import path from "../ultis/path";
-const notActiveStyle = { color: "#fff" };
+const notActiveStyle = { color: "#333" };
 const activeStyle = { color: "#0f7070" };
 const LeftSidebar = () => {
   const navigate = useNavigate();

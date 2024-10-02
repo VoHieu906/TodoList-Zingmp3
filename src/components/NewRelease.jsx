@@ -20,7 +20,7 @@ const NewRelease = () => {
       style={{ marginTop: 38, fontSize: 12 }}
       className="px-2 d-flex flex-column gap-2"
     >
-      <div className="d-flex align-items-center justify-content-between">
+      <div className="d-flex align-items-center justify-content-between px-2">
         <h3 className="fw-bold text" style={{ fontSize: 20 }}>
           {newRelease?.title}
         </h3>
@@ -30,7 +30,7 @@ const NewRelease = () => {
         <button
           onClick={() => setIsActive(0)}
           type="button"
-          className={`ms-3 py-1 px-4 rounded-pill border border-success ${
+          className={`ms-2 py-1 px-4 rounded-pill border border-success ${
             isActive === 0 && "bg-success text-light"
           }`}
         >

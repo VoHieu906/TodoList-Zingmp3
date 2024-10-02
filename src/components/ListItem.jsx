@@ -10,7 +10,7 @@ const ListItem = ({ songData, isHideAlbum }) => {
 
   return (
     <div
-      className="d-flex align-items-center justify-content-between py-2 hover-effect w-100"
+      className="d-flex align-items-center justify-content-between px-2 py-2 hover-effect w-100"
       style={{ borderTop: "1px solid rgba(0,0,0,0.05)" }}
       onClick={() => {
         dispatch(actions.setCurSongId(songData?.encodeId));
@@ -54,21 +54,25 @@ const ListItem = ({ songData, isHideAlbum }) => {
         </span>
       </div>
       {!isHideAlbum && (
-        <div className="album-title flex-grow-1 " style={{ width: "40%" }}>
+        <div
+          className="album-title flex-grow-1 opacity-75"
+          style={{ width: "40%" }}
+        >
           {songData?.album?.title?.length > 30
             ? `${songData?.album?.title.slice(0, 20)} ...`
             : songData?.album?.title}
         </div>
       )}
 
-      <div
-        className={`songduration flex-grow-1 opacity-75 ${
-          isHideAlbum && " d-flex justify-content-end"
-        }`}
-        style={{ width: "10%", paddingRight: 20 }}
-      >
-        {moment.utc(songData?.duration * 1000).format("mm:ss")}
-      </div>
+      {!isHideAlbum && (
+        <div
+          className={`songduration flex-grow-1 opacity-75 d-flex justify-content-end
+        `}
+          style={{ width: "10%" }}
+        >
+          {moment.utc(songData?.duration * 1000).format("mm:ss")}
+        </div>
+      )}
     </div>
   );
 };

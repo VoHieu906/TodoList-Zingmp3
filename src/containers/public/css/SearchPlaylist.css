@@ -1,0 +1,23 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Tạo 5 cột */
+  gap: 16px; /* Khoảng cách giữa các phần tử */
+}
+
+@media (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr); /* Hiển thị 3 cột khi trên tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* Hiển thị 2 cột khi trên mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Hiển thị 1 cột khi trên màn hình rất nhỏ */
+  }
+}

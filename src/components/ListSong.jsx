@@ -5,17 +5,20 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 const { LuDot } = Icons;
 
-const ListSong = ({ totalDuration }) => {
+const ListSong = ({ totalDuration, isHideTitle }) => {
   const { songs } = useSelector((state) => state.music);
   return (
     <div className="d-flex flex-column text-sm ">
-      <div className="d-flex align-items-center justify-content-between p-2 fw-semibold ">
-        <span style={{ width: "50%" }}>BÀI HÁT</span>
-        <span style={{ width: "30%" }}>ALBUM</span>
-        <span style={{ width: "20%" }} className="text-end">
-          THỜI GIAN
-        </span>
-      </div>
+      {!isHideTitle && (
+        <div className="d-flex align-items-center justify-content-between p-2 fw-semibold ">
+          <span style={{ width: "50%" }}>BÀI HÁT</span>
+          <span style={{ width: "30%" }}>ALBUM</span>
+          <span style={{ width: "20%" }} className="text-end">
+            THỜI GIAN
+          </span>
+        </div>
+      )}
+
       <div className="d-flex flex-column gap-2">
         {songs?.map((item) => (
           <ListItem key={item.encodeId} songData={item} />

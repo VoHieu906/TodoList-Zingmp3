@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { memo } from "react";
 import Slider from "react-slick";
 import { SectionItem } from "./";
-const Section = ({ data }) => {
+const Section = ({ data, number }) => {
   console.log(data);
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 5, // Hiển thị 5 item
+    slidesToShow: number || 5, // Hiển thị 5 item
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -35,8 +35,8 @@ const Section = ({ data }) => {
     ],
   };
   return (
-    <div style={{ marginTop: 38 }} className="px-2 d-flex flex-column gap-5 ">
-      <div className="d-flex align-items-center justify-content-between">
+    <div style={{ marginTop: 38 }} className="px-2 d-flex flex-column gap-4 ">
+      <div className="d-flex align-items-center justify-content-between px-2">
         <h3 className="fw-bold text" style={{ fontSize: 20 }}>
           {data?.title}
         </h3>

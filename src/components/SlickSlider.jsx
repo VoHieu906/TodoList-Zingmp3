@@ -47,7 +47,7 @@ const SlickSlider = () => {
     console.log(item.type);
   };
   return (
-    <div className="slider-container">
+    <div className="slider-container px-2">
       <Slider {...settings}>
         {banner?.map((item) => (
           <div
