@@ -44,6 +44,7 @@ function App() {
             <Route path={Path.WEEKRANK__TITLE__PID} element={<WeekRank />} />
             <Route path={Path.ZING_CHART} element={<ZingChart />} />
             <Route path={Path.HOME__SINGER} element={<Singer />} />
+            <Route path={Path.HOME_ARTIST__SINGER} element={<Singer />} />
             <Route path={Path.SEARCH} element={<Search />}>
               <Route path={Path.ALL} element={<SearchAll />} />
               <Route path={Path.SONG} element={<SearchSong />} />

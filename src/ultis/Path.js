@@ -13,5 +13,6 @@ const Path = {
   SONG: "bai-hat",
   PLAYLIST_SEARCH: "playlist",
   HOME__SINGER: ":singer",
+  HOME_ARTIST__SINGER: "nghe-si/:singer",
 };
 export default Path;

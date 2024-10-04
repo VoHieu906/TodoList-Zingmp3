@@ -28,6 +28,7 @@ import {
   IoPauseCircleOutline,
   IoTrashBin,
   IoPersonAddSharp,
+  IoPersonAdd,
 } from "react-icons/io5";
 import { CiMusicNote1 } from "react-icons/ci";
 import { LuDot } from "react-icons/lu";
@@ -59,6 +60,7 @@ const Icons = {
   IoPauseCircleOutline,
   IoTrashBin,
   IoPersonAddSharp,
+  IoPersonAdd,
   IoIosMusicalNotes,
   CiMusicNote1,
   LuDot,

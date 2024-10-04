@@ -12,7 +12,7 @@ const Home = () => {
   const { hot, chill, top100, hAlbum, weekChart } = useSelector(
     (state) => state.app
   );
-  console.log(weekChart);
+  console.log({ hot });
 
   return (
     <div className="overflow-y-auto">
