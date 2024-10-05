@@ -28,9 +28,9 @@ const SongItem = ({
       justify-content-between
       align-items-center
       gap-3
-      rounded
       cursor-pointer 
-      ${style || "song-item"}`}
+      song-item
+      ${style || "rounded"}`}
       style={{ width: "100%", padding: 10 }}
       onClick={() => {
         dispatch(actions.setCurSongId(sid));
@@ -58,7 +58,7 @@ const SongItem = ({
           className={`rounded ${size || "img-60"}`}
         />
 
-        <div className="d-flex flex-column">
+        <div className="d-flex flex-column gap-1">
           <span className=" fw-semibold" style={{ fontSize: 14 }}>
             {rsb
               ? title?.length >= 15
@@ -68,7 +68,9 @@ const SongItem = ({
               ? `${title.slice(0, 20)} ...`
               : title}
           </span>
-          <span className="text-xs opacity-75">{artists}</span>
+          <span className="text-xs opacity-75" style={{ fontSize: 12 }}>
+            {artists?.length > 15 ? `${artists.slice(0, 15)} ...` : artists}
+          </span>
           {releaseDate && (
             <span className="text-xs  opacity-75">
               {moment(releaseDate * 1000)

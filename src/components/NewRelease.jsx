@@ -6,6 +6,7 @@ const NewRelease = () => {
   const { newRelease } = useSelector((state) => state.app);
   const [isActive, setIsActive] = useState(0);
   const [songs, setSongs] = useState([]);
+
   useEffect(() => {
     if (isActive === 0) {
       setSongs(newRelease?.items?.all);

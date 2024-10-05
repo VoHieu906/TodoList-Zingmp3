@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { apiGetArtist } from "../../apis/music";
 import icons from "../../ultis/Icons";
-import { SongItem } from "../../components";
+import { SongItem, Section, Artist } from "../../components";
 const { IoPersonAdd, FaPlayCircle } = icons;
 const Singer = () => {
   const { singer } = useParams();
   const [artistData, setArtistData] = useState(null);
-  // console.log(singer);
+
   useEffect(() => {
     const fetchArtistData = async () => {
       const res = await apiGetArtist(singer);
@@ -53,7 +53,7 @@ const Singer = () => {
                 <span style={{ fontSize: 14 }}>
                   {`${Number(
                     artistData?.totalFollow.toFixed(1)
-                  ).toLocaleString()}`}{" "}
+                  ).toLocaleString()}`}
                   người quan tâm
                 </span>
                 <button
@@ -78,11 +78,11 @@ const Singer = () => {
         </div>
       </div>
       <div className="row px-3 mt-5">
-        <div className="col-md-12 border border-danger">
+        <div className="col-md-12 ">
           <h3>Bài hát nổi bật</h3>
           <div className="d-flex flex-wrap w-100 justify-content-between ">
             {artistData?.sections
-              .find((item) => item.sectionType === "song")
+              .find((item) => item.sectionId === "aSongs")
               ?.items?.filter((item, index) => index < 6)
               .map((item) => (
                 <div key={item.encodeId} style={{ width: "30%" }}>
@@ -91,9 +91,60 @@ const Singer = () => {
                     title={item.title}
                     artists={item.artistsNames}
                     sid={item.encodeId}
+                    style="border-bottom border-secondary rounded-none"
                   />
                 </div>
               ))}
+          </div>
+        </div>
+      </div>
+      <div className="px-3 mt-5">
+        {artistData?.sections
+          ?.filter((item) => item.sectionType === "playlist")
+          ?.map((item, index) => (
+            <Section key={index} data={item} />
+          ))}
+      </div>
+      <div className="d-flex flex-column px-3" style={{ marginTop: 24 }}>
+        <h3
+          className="fw-bold px-2 "
+          style={{ fontSize: 20, marginBottom: 24 }}
+        >
+          {
+            artistData?.sections?.find((item) => item.sectionId === "aReArtist")
+              .title
+          }
+        </h3>
+        <div className="row" style={{ width: "100%" }}>
+          {artistData?.sections
+            ?.find((item) => item.sectionId === "aReArtist")
+            .items.map((item) => (
+              <div key={item.id} className="col-md-3">
+                <Artist
+                  name={item.name}
+                  thumbnailM={item.thumbnailM}
+                  totalFollow={item.totalFollow}
+                  link={item.link}
+                />
+              </div>
+            ))}
+        </div>
+      </div>
+      <div className="row px-4 mt-5">
+        <h3 className="px-2 my-4">Về {artistData?.name}</h3>
+        <div className="col-md-5 px-2">
+          <img
+            style={{ width: "100%", height: 300, objectFit: "cover" }}
+            src={artistData?.thumbnailM}
+            alt="thumbnail"
+            className="rounded"
+          />
+        </div>
+        <div className="col-md-7">
+          <div className="d-flex flex-column gap-5" style={{ fontSize: 14 }}>
+            <p dangerouslySetInnerHTML={{ __html: artistData?.biography }}></p>
+
+            <div>awards</div>
           </div>
         </div>
       </div>
