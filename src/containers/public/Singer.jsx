@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { apiGetArtist } from "../../apis/music";
 import icons from "../../ultis/Icons";
@@ -7,7 +7,7 @@ const { IoPersonAdd, FaPlayCircle } = icons;
 const Singer = () => {
   const { singer } = useParams();
   const [artistData, setArtistData] = useState(null);
-
+  const ref = useRef();
   useEffect(() => {
     const fetchArtistData = async () => {
       const res = await apiGetArtist(singer);
@@ -18,9 +18,16 @@ const Singer = () => {
     };
     singer && fetchArtistData();
   }, [singer]);
+  useEffect(() => {
+    ref.current.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+  }, [singer]);
   return (
     <div className="d-flex flex-column w-100">
-      <div className="position-relative">
+      <div ref={ref} className="position-relative">
         <img
           src={artistData?.cover}
           alt="background"
@@ -131,7 +138,12 @@ const Singer = () => {
         </div>
       </div>
       <div className="row px-4 mt-5">
-        <h3 className="px-2 my-4">Về {artistData?.name}</h3>
+        <h3
+          className="fw-bold px-2 "
+          style={{ fontSize: 20, marginBottom: 24 }}
+        >
+          Về {artistData?.name}
+        </h3>
         <div className="col-md-5 px-2">
           <img
             style={{ width: "100%", height: 300, objectFit: "cover" }}
@@ -141,10 +153,15 @@ const Singer = () => {
           />
         </div>
         <div className="col-md-7">
-          <div className="d-flex flex-column gap-5" style={{ fontSize: 14 }}>
+          <div className="d-flex flex-column gap-1" style={{ fontSize: 14 }}>
             <p dangerouslySetInnerHTML={{ __html: artistData?.biography }}></p>
 
-            <div>awards</div>
+            <div className="d-flex flex-column gap-2">
+              <span className="fw-bold" style={{ fontSize: 20 }}>
+                {Number(artistData?.follow?.toFixed(1)).toLocaleString()}
+              </span>
+              <span>Người quan tâm</span>
+            </div>
           </div>
         </div>
       </div>
