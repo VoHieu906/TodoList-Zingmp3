@@ -45,40 +45,50 @@ const Singer = () => {
         >
           <div className="d-flex flex-column gap-4">
             <div
-              className="position-absolute bottom-0"
+              className="position-absolute bottom-0 d-flex align-items-center"
               style={{ paddingBottom: 24 }}
             >
-              <div className="d-flex gap-4 align-items-center">
-                <h1 style={{ fontSize: 50, fontWeight: "bold" }}>
-                  {artistData?.name}
-                </h1>
-                <span className="cursor-pointer">
-                  <FaPlayCircle size={42} />
-                </span>
+              <div>
+                <img
+                  src={artistData?.thumbnail}
+                  style={{ width: "60%" }}
+                  className="rounded-circle"
+                  alt="avatar"
+                />
               </div>
-              <div className="d-flex gap-4 align-items-center">
-                <span style={{ fontSize: 14 }}>
-                  {`${Number(
-                    artistData?.totalFollow.toFixed(1)
-                  ).toLocaleString()}`}
-                  người quan tâm
-                </span>
-                <button
-                  type="button"
-                  className="px-4 py-1 rounded-pill border-0 text-light d-flex align-items-center justify-content-center gap-2"
-                  style={{
-                    backgroundColor: "#0E8080",
-                    fontSize: 14,
-                    width: "auto",
-                  }}
-                >
-                  <span
-                    style={{ display: "inline-flex", alignItems: "center" }}
-                  >
-                    <IoPersonAdd />
+              <div style={{ marginLeft: -60 }}>
+                <div className="d-flex gap-4 align-items-center">
+                  <h1 style={{ fontSize: 50, fontWeight: "bold" }}>
+                    {artistData?.name}
+                  </h1>
+                  <span className="cursor-pointer">
+                    <FaPlayCircle size={42} />
                   </span>
-                  <span>QUAN TÂM</span>
-                </button>
+                </div>
+                <div className="d-flex gap-2 align-items-center">
+                  <span style={{ fontSize: 14 }}>
+                    {`${Number(
+                      artistData?.totalFollow.toFixed(1)
+                    ).toLocaleString()}`}
+                  </span>
+                  <span className="me-3">người quan tâm</span>
+                  <button
+                    type="button"
+                    className="px-4 py-1 rounded-pill border-0 text-light d-flex align-items-center justify-content-center gap-2"
+                    style={{
+                      backgroundColor: "#0E8080",
+                      fontSize: 14,
+                      width: "auto",
+                    }}
+                  >
+                    <span
+                      style={{ display: "inline-flex", alignItems: "center" }}
+                    >
+                      <IoPersonAdd />
+                    </span>
+                    <span>QUAN TÂM</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
