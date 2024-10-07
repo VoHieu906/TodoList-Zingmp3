@@ -58,6 +58,7 @@ const General = () => {
           <div className="flex-grow-1 flex-shrink-1 w-100">
             <Scrollbars autoHide style={{ width: "100%", height: "100%" }}>
               <Outlet />
+              <div style={{ height: 120 }}></div>
             </Scrollbars>
           </div>
         </div>
@@ -71,6 +72,7 @@ const General = () => {
           </div>
         )}
       </div>
+
       <div
         style={{ height: "90px", zIndex: 1000 }}
         className="position-fixed bottom-0 w-100"

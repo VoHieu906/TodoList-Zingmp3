@@ -2,8 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { apiGetChartHome } from "../../apis";
 import { Line } from "react-chartjs-2";
 import { Chart, scales } from "chart.js/auto";
-import { SongItem, ListItem } from "../../components";
+import { SongItem, RankList } from "../../components";
 import _ from "lodash";
+import "./css/Zingchart.css";
 const ZingChart = () => {
   const [chartData, setChartData] = useState();
   const [data, setData] = useState(null);
@@ -110,7 +111,6 @@ const ZingChart = () => {
       setData({ labels, datasets });
     }
   }, [chartData]);
-  console.log(data);
 
   return (
     <div className="px-3 d-flex flex-column">
@@ -163,9 +163,7 @@ const ZingChart = () => {
         </div>
       </div>
       <div className="mt-5">
-        {chartData?.RTChart?.items.map((item) => (
-          <ListItem key={item.encodeId} songData={item} />
-        ))}
+        <RankList data={chartData?.RTChart?.items} />
       </div>
     </div>
   );

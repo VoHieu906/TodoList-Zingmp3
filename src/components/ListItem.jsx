@@ -1,11 +1,12 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import icons from "../ultis/Icons";
 import moment from "moment";
 import "./css/ListItem.css";
 import { useDispatch } from "react-redux";
 import * as actions from "../store/actions";
+
 const { IoIosMusicalNotes } = icons;
-const ListItem = ({ songData, isHideAlbum }) => {
+const ListItem = ({ songData, isHideAlbum, isHideNote, order }) => {
   const dispatch = useDispatch();
 
   return (
@@ -30,7 +31,23 @@ const ListItem = ({ songData, isHideAlbum }) => {
         className="d-flex align-items-center gap-2 flex-grow-1"
         style={{ width: "50%" }}
       >
-        {!isHideAlbum && (
+        {order && (
+          <span
+            style={{ width: 50, color: "#CED9D9" }}
+            className={`${
+              order === 1
+                ? "text-shadow-no1"
+                : order === 2
+                ? "text-shadow-no2"
+                : order === 3
+                ? "text-shadow-no3"
+                : "text-shadow-rest"
+            } text-order`}
+          >
+            {order}
+          </span>
+        )}
+        {!isHideNote && (
           <span>
             <IoIosMusicalNotes />
           </span>
@@ -56,7 +73,7 @@ const ListItem = ({ songData, isHideAlbum }) => {
       {!isHideAlbum && (
         <div
           className="album-title flex-grow-1 opacity-75"
-          style={{ width: "40%" }}
+          style={{ width: "40%", fontSize: 12 }}
         >
           {songData?.album?.title?.length > 30
             ? `${songData?.album?.title.slice(0, 20)} ...`
