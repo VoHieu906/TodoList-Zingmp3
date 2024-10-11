@@ -3,6 +3,7 @@ import { apiGetChartHome } from "../../apis";
 import { Line } from "react-chartjs-2";
 import { Chart, scales } from "chart.js/auto";
 import { SongItem, RankList } from "../../components";
+import { memo } from "react";
 import _ from "lodash";
 import "./css/Zingchart.css";
 const ZingChart = () => {
@@ -111,6 +112,8 @@ const ZingChart = () => {
       setData({ labels, datasets });
     }
   }, [chartData]);
+  console.log(chartData?.weekChart);
+  console.log(Object.entries(chartData?.weekChart));
 
   return (
     <div className="px-3 d-flex flex-column">
@@ -164,9 +167,42 @@ const ZingChart = () => {
       </div>
       <div className="mt-5">
         <RankList data={chartData?.RTChart?.items} />
+        <div className="w-100 p-4" style={{ height: 500 }}>
+          <div className="d-flex flex-column gap-3">
+            <h3 style={{ fontWeight: "bold", fontSize: 40, color: "#0E8080" }}>
+              Bảng xếp hạng trong tuần
+            </h3>
+            <div className="row">
+              {Object.entries(chartData?.weekChart)?.map((item, index) => (
+                <div className="col-md-4" key={index}>
+                  <div
+                    className="d-flex justify-content-center"
+                    style={{ backgroundColor: "#DDE4E4" }}
+                  >
+                    <h4
+                      style={{
+                        fontSize: 24,
+                        color: "#0E8080",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {item[0] === "vn"
+                        ? "Việt Nam"
+                        : item[0] === "us"
+                        ? "US-UK"
+                        : item[0] === "korea"
+                        ? "K-Pop"
+                        : ""}
+                    </h4>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ZingChart;
+export default memo(ZingChart);
