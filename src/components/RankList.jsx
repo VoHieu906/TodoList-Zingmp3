@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ListItem } from "../components";
-
-const RankList = ({ data }) => {
+import { Navigate, useNavigate } from "react-router-dom";
+const RankList = ({ data, number, full, link }) => {
+  const navigate = useNavigate();
   const [isShowFull, setIsShowFull] = useState(false);
   const [songs, setSongs] = useState(null);
   useEffect(() => {
     if (!isShowFull) {
-      setSongs(data?.filter((item, index) => index < 10));
+      setSongs(data?.filter((item, index) => index < number));
     } else {
       setSongs(data);
     }
@@ -18,6 +19,7 @@ const RankList = ({ data }) => {
           key={item.encodeId}
           songData={item}
           isHideNote
+          isHideAlbum={!full}
           order={index + 1}
         />
       ))}
@@ -30,7 +32,9 @@ const RankList = ({ data }) => {
             border: "1px solid #0E8080",
             color: "#0E8080",
           }}
-          onClick={() => setIsShowFull((prev) => !prev)}
+          onClick={() =>
+            link ? navigate(link.split(".")[0]) : setIsShowFull((prev) => !prev)
+          }
         >
           {isShowFull ? "Ẩn bớt" : "Xem tất cả"}
         </button>

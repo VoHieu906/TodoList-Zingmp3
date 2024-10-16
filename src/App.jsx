@@ -19,17 +19,26 @@ import {
 } from "./containers/public"; //src\containers\public\index.jsx
 import { Routes, Route } from "react-router-dom";
 import Path from "./ultis/path";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as actions from "./store/actions"; //src\store\actions\index.js
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Bounce, ToastContainer } from "react-toastify";
+import { apiGetChartHome } from "./apis";
 
 function App() {
   const dispatch = useDispatch();
+  const [weekChart, setWeekChart] = useState(null);
   useEffect(() => {
     dispatch(actions.getHome());
-  });
+    const fetchChartData = async () => {
+      const response = await apiGetChartHome();
+      if (response.data.err === 0) {
+        setWeekChart(response.data.data.weekChart);
+      }
+    };
+    fetchChartData();
+  }, []);
   return (
     <>
       <div className="App">
@@ -41,7 +50,12 @@ function App() {
             <Route path={Path.PLAYLIST__TITLE__PID} element={<Playlist />} />
             <Route path={Path.ALBUM__TITLE__PID} element={<Playlist />} />
             <Route path={Path.STAR} element={<Home />} />
-            <Route path={Path.WEEKRANK__TITLE__PID} element={<WeekRank />} />
+            <Route
+              path={Path.WEEKRANK__TITLE__PID}
+              element={
+                <WeekRank weekChart={weekChart && Object.values(weekChart)} />
+              }
+            />
             <Route path={Path.ZING_CHART} element={<ZingChart />} />
             <Route path={Path.HOME__SINGER} element={<Singer />} />
             <Route path={Path.HOME_ARTIST__SINGER} element={<Singer />} />

@@ -1,0 +1,13 @@
+.active-style {
+  font-size: 24px;
+  padding-bottom: 12px;
+  color: #0e8080;
+  border-bottom: 2px solid #0e8080;
+  text-decoration: none;
+}
+.not-active-style {
+  font-size: 24px;
+  padding-bottom: 12px;
+  color: black;
+  text-decoration: none;
+}

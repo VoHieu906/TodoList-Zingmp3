@@ -8,6 +8,7 @@ import * as actions from "../../store/actions";
 import "./css/Playlist.css";
 import icons from "../../ultis/Icons";
 import { useLocation } from "react-router-dom";
+
 const { FaPlay } = icons;
 
 const Playlist = () => {
@@ -15,12 +16,14 @@ const Playlist = () => {
   const { isPlaying } = useSelector((state) => state.music);
   const [playlistData, setPlaylistData] = useState({});
   const [shouldAnimate, setShouldAnimate] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(actions.setCurAlbumId(pid));
     const fetchDetailPlayList = async () => {
       dispatch(actions.loading(true));
+
       try {
         const response = await apis.apiGetDetailPlaylist(pid);
         dispatch(actions.loading(false));
